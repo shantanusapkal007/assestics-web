@@ -10,10 +10,12 @@ import { Button } from "@/components/ui/Button";
 export interface MobileNavigationProps {
   isOpen: boolean;
   onClose: () => void;
+  links?: { href: string; label: string }[];
 }
 
-export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
+export function MobileNavigation({ isOpen, onClose, links }: MobileNavigationProps) {
   const pathname = usePathname();
+  const navLinks = links || siteConfig.navigation;
 
   // Close on Escape key
   useEffect(() => {
@@ -79,7 +81,7 @@ export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
           <div className="text-xs font-mono uppercase tracking-widest text-[#687069] mb-4">
             Navigation
           </div>
-          {siteConfig.navigation.map((item) => {
+          {navLinks.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link

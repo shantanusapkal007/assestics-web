@@ -2,22 +2,38 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/content/site";
+import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const NAV_LINKS = [
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
 
 export function Header() {
   const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (scrollY / totalHeight) * 100)));
+      }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -26,87 +42,93 @@ export function Header() {
     <>
       <header
         className={cn(
-          "sticky top-0 z-40 w-full transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-[#FCFBF8]/90 backdrop-blur-md border-b border-[#E2E3DC] shadow-[0_2px_12px_rgba(32,39,34,0.03)] py-3"
+            ? "border-b border-[var(--color-border)]/80 bg-[var(--color-canvas)]/90 backdrop-blur-md shadow-2xs py-3"
             : "bg-transparent py-5"
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex items-center justify-between">
-            {/* Brand Logo & Name */}
+            {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-3 group select-none"
+              className="group flex items-center gap-3 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] rounded-sm"
               aria-label="Assestics Home"
             >
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-105">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative h-7 w-28 sm:h-8 sm:w-32">
+                <Image
                   src="/images/logo.png"
-                  alt="Assestics Logo"
-                  className="w-full h-full object-contain"
+                  alt="Assestics"
+                  fill
+                  sizes="(max-width: 640px) 112px, 128px"
+                  priority
+                  className="object-contain object-left transition-transform duration-300 group-hover:scale-102"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-bold tracking-tight text-[#202722] leading-none">
-                  Assestics
-                </span>
-                <span className="text-[10px] font-mono tracking-widest text-[#687069] uppercase mt-0.5 hidden sm:block">
-                  Connected Systems
-                </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
-            <nav
-              className="hidden md:flex items-center gap-1 bg-[#F3F2ED] border border-[#E2E3DC] rounded-full px-2 py-1"
-              aria-label="Main Navigation"
-            >
-              {siteConfig.navigation.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href));
+            {/* Desktop Navigation Links with Active System Indicator */}
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
                 return (
                   <Link
-                    key={item.href}
-                    href={item.href}
+                    key={link.href}
+                    href={link.href}
                     className={cn(
-                      "text-xs font-semibold px-4 py-1.5 rounded-full transition-all duration-200",
+                      "relative px-4 py-2 text-sm font-medium transition-colors rounded-md",
                       isActive
-                        ? "bg-white text-[#202722] shadow-[0_1px_4px_rgba(32,39,34,0.06)]"
-                        : "text-[#687069] hover:text-[#202722] hover:bg-white/50"
+                        ? "text-[var(--color-text-primary)] font-semibold"
+                        : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                     )}
                   >
-                    {item.label}
+                    {link.label}
+                    {/* Active / Hover Indicator Line */}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-[var(--color-brand-primary)]" />
+                    )}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Desktop Action Button */}
+            {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-4">
-              <Button href="/contact" variant="primary" size="sm">
-                Discuss a project
+              <Button asChild size="sm" className="group">
+                <Link href="/contact">
+                  Discuss a project
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
               </Button>
             </div>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Menu Button */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2.5 rounded-full bg-[#F3F2ED] border border-[#E2E3DC] text-[#202722] hover:bg-[#EAE9E2] transition-colors focus-visible:outline-2 focus-visible:outline-[#0891B2]"
+              className="flex md:hidden p-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]"
               aria-label="Open Navigation Menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="h-5 w-5" />
             </button>
           </div>
+        </Container>
+
+        {/* Global Scroll Progress Bar at the bottom of Header */}
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-transparent">
+          <div
+            className="h-full bg-[var(--color-brand-primary)] transition-[width] duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       <MobileNavigation
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
+        links={NAV_LINKS}
       />
     </>
   );

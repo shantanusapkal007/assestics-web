@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { projects } from "@/content/projects";
 import { Button } from "@/components/ui/Button";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { ShutterImage } from "@/components/motion/ShutterImage";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -22,7 +23,7 @@ export async function generateMetadata({
   if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title} — Case Study`,
+    title: `${project.title} — Case Study | Assestics`,
     description: project.tagline,
   };
 }
@@ -53,7 +54,7 @@ export default async function ProjectDetailPage({
           </div>
 
           {/* Header Metadata */}
-          <div className="space-y-6 max-w-4xl mb-16">
+          <div className="space-y-6 max-w-4xl mb-12">
             <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
               <span className="mono-tag">{project.category}</span>
               <span className="text-[#C8CAC1]">•</span>
@@ -69,6 +70,17 @@ export default async function ProjectDetailPage({
             <p className="text-xl sm:text-2xl text-[#687069] leading-relaxed [text-wrap:pretty]">
               {project.tagline}
             </p>
+          </div>
+
+          {/* Signature Shutter Aperture Image Reveal */}
+          <div className="mb-16">
+            <ShutterImage
+              src={project.image}
+              alt={project.title}
+              aspectRatio="aspect-21/9"
+              variant="aperture"
+              className="border border-[#E2E3DC] shadow-sm"
+            />
           </div>
 
           {/* Case Study Details Grid */}
@@ -170,12 +182,11 @@ export default async function ProjectDetailPage({
 
                 <div className="pt-6 border-t border-[#E2E3DC]">
                   <Button
-                    href="/contact"
-                    variant="brand"
+                    asChild
                     size="md"
                     className="w-full"
                   >
-                    Discuss a similar system
+                    <Link href="/contact">Discuss a similar system</Link>
                   </Button>
                 </div>
               </div>

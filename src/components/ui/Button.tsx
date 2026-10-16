@@ -8,6 +8,7 @@ export interface ButtonProps
   size?: "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
+  asChild?: boolean;
   children: React.ReactNode;
 }
 
@@ -16,6 +17,7 @@ export function Button({
   size = "md",
   href,
   external,
+  asChild,
   className,
   children,
   ...props
@@ -46,6 +48,12 @@ export function Button({
     variantStyles[variant],
     className
   );
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<{ className?: string }>, {
+      className: cn(combinedClass, (children.props as { className?: string }).className),
+    });
+  }
 
   if (href) {
     if (external) {

@@ -1,90 +1,127 @@
 "use client";
 
-import React from "react";
-import dynamic from "next/dynamic";
+import React, { useRef } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { SceneFallback } from "@/components/3d/SceneFallback";
-import { LinkArrow } from "@/components/ui/LinkArrow";
-
-// Dynamically load the 3D scene on the client without blocking initial SSR render
-const AssesticsAssembly = dynamic(
-  () =>
-    import("@/components/3d/AssesticsAssembly").then(
-      (mod) => mod.AssesticsAssembly
-    ),
-  {
-    ssr: false,
-    loading: () => <SceneFallback />,
-  }
-);
+import { KineticText } from "@/components/motion/KineticText";
+import { HeroWorkflowSVG } from "@/components/sections/HeroWorkflowSVG";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion()) return;
+      const { gsap } = registerGSAP();
+      if (!heroRef.current) return;
+
+      const tl = gsap.timeline({ delay: 0.15 });
+
+      if (subtitleRef.current) {
+        tl.fromTo(
+          subtitleRef.current,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          "+=0.2"
+        );
+      }
+
+      if (ctaRef.current) {
+        tl.fromTo(
+          ctaRef.current.children,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power3.out" },
+          "-=0.3"
+        );
+      }
+    },
+    { scope: heroRef }
+  );
+
   return (
-    <section className="relative w-full pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden border-b border-[#E2E3DC]/60">
-      {/* Subtle blueprint grid background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#E2E3DC_1px,transparent_1px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
+    <section
+      ref={heroRef}
+      className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24"
+      aria-label="Assestics Introduction"
+    >
+      {/* Background subtle architectural hairline guidelines */}
+      <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid h-full w-full grid-cols-4 lg:grid-cols-12">
+          <div className="border-r border-[var(--color-border)]/40" />
+          <div className="hidden border-r border-[var(--color-border)]/40 lg:block lg:col-span-2" />
+          <div className="border-r border-[var(--color-border)]/40 lg:col-span-3" />
+          <div className="border-r border-[var(--color-border)]/40 lg:col-span-3" />
+          <div className="border-r border-[var(--color-border)]/40 lg:col-span-3" />
+        </div>
+      </div>
 
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Accessible Primary Editorial Copy & CTAs */}
-          <div className="lg:col-span-6 space-y-6 relative z-10">
-            {/* Architectural Descriptor */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#EDFBFD] border border-[#D5F6F9]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0891B2] animate-pulse" />
-              <span className="mono-tag">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Left Column: Typographic Narrative */}
+          <div className="lg:col-span-6 xl:col-span-7">
+            {/* Architectural Micro-Descriptor */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 py-1.5 shadow-2xs">
+              <Sparkles className="h-3.5 w-3.5 text-[var(--color-brand-strong)]" />
+              <span className="font-mono text-[11px] font-semibold tracking-widest text-[var(--color-text-secondary)] uppercase">
                 SOFTWARE · AI · DIGITAL OPERATIONS
               </span>
             </div>
 
-            {/* Primary Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#202722] leading-[1.1] [text-wrap:balance]">
-              Complex problems.{" "}
-              <span className="text-[#0891B2] block sm:inline">
+            {/* Kinetic Typography Headline */}
+            <h1 className="font-heading text-4xl font-extrabold tracking-tight text-[var(--color-text-primary)] sm:text-5xl md:text-6xl xl:text-7xl">
+              <KineticText delay={0.05}>Complex problems.</KineticText>
+              <KineticText delay={0.25} className="text-[var(--color-brand-strong)]">
                 Smarter systems.
-              </span>
+              </KineticText>
             </h1>
 
-            {/* Supporting Copy */}
-            <p className="text-lg sm:text-xl text-[#687069] max-w-xl leading-relaxed [text-wrap:pretty]">
-              Assestics builds intelligent software, automates business
-              workflows and engineers reliable digital infrastructure to help
-              businesses operate better and grow with confidence.
+            {/* Narrative Supporting Copy */}
+            <p
+              ref={subtitleRef}
+              className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary)] sm:text-xl"
+            >
+              Assestics builds intelligent software, automates business workflows and engineers reliable digital
+              infrastructure to help businesses operate better and grow with confidence.
             </p>
 
-            {/* Direct Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-              <Button href="/contact" variant="primary" size="lg">
-                <span>Discuss a project</span>
-                <LinkArrow />
+            {/* Primary & Secondary Actions */}
+            <div ref={ctaRef} className="mt-8 flex flex-wrap items-center gap-4 pt-2">
+              <Button asChild size="lg" className="group">
+                <Link href="/contact">
+                  Discuss a project
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
               </Button>
-              <Button href="/work" variant="outline" size="lg">
-                Explore our work
+              <Button asChild variant="outline" size="lg">
+                <Link href="/work">Explore our work</Link>
               </Button>
             </div>
 
-            {/* System Status Indicators (Authentic Architecture Metrics) */}
-            <div className="pt-6 border-t border-[#E2E3DC] flex flex-wrap items-center gap-6 text-xs text-[#687069] font-mono">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#38D8E4]" />
-                <span className="font-semibold text-[#202722]">
-                  ARCHITECTURE
-                </span>
-                <span>INTEGRATED</span>
-              </div>
-              <div className="hidden sm:block text-[#C8CAC1]">|</div>
+            {/* Verified Systems Credential Ribbon */}
+            <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-text-tertiary)] font-mono">
               <div>
-                <span className="font-semibold text-[#202722]">APPROACH:</span>{" "}
-                SYSTEMIC &amp; MEASURED
+                <span className="font-semibold text-[var(--color-text-primary)]">CORE:</span> AI Workflows
+              </div>
+              <div className="h-3 w-px bg-[var(--color-border)]" />
+              <div>
+                <span className="font-semibold text-[var(--color-text-primary)]">ENGINEERING:</span> Custom Software
+              </div>
+              <div className="h-3 w-px bg-[var(--color-border)]" />
+              <div>
+                <span className="font-semibold text-[var(--color-text-primary)]">OPERATIONS:</span> ERP & Supply Chain
               </div>
             </div>
           </div>
 
-          {/* Right Column: Signature 3D Assestics Assembly */}
-          <div className="lg:col-span-6 relative w-full h-[380px] sm:h-[480px] lg:h-[580px] flex items-center justify-center">
-            {/* Ambient cyan backlight glow */}
-            <div className="absolute w-[280px] h-[280px] bg-[#38D8E4]/15 rounded-full blur-[90px] pointer-events-none" />
-            <AssesticsAssembly />
+          {/* Right Column: Original Custom Self-Drawing SVG Workflow Scene */}
+          <div className="relative lg:col-span-6 xl:col-span-5">
+            <HeroWorkflowSVG />
           </div>
         </div>
       </Container>
