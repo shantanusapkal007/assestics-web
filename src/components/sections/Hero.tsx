@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { KineticText } from "@/components/motion/KineticText";
-import { HeroWorkflowSVG } from "@/components/sections/HeroWorkflowSVG";
+import { ConnectedHeroSystem } from "@/components/sections/ConnectedHeroSystem";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
@@ -21,14 +21,14 @@ export function Hero() {
       const { gsap } = registerGSAP();
       if (!heroRef.current) return;
 
-      const tl = gsap.timeline({ delay: 0.15 });
+      const tl = gsap.timeline({ delay: 0.1 });
 
       if (subtitleRef.current) {
         tl.fromTo(
           subtitleRef.current,
           { opacity: 0, y: 16 },
           { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-          "+=0.2"
+          "+=0.15"
         );
       }
 
@@ -47,10 +47,10 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24"
+      className="relative flex min-h-[85vh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24"
       aria-label="Assestics Introduction"
     >
-      {/* Background subtle architectural hairline guidelines */}
+      {/* Background Architectural Grid Lines */}
       <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid h-full w-full grid-cols-4 lg:grid-cols-12">
           <div className="border-r border-[var(--color-border)]/40" />
@@ -62,35 +62,35 @@ export function Hero() {
       </div>
 
       <Container>
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left Column: Typographic Narrative */}
-          <div className="lg:col-span-6 xl:col-span-7">
-            {/* Architectural Micro-Descriptor */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          {/* Left Column: Bold Typographic Narrative */}
+          <div className="lg:col-span-6 xl:col-span-6">
+            {/* Compact Capability Label */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 py-1.5 shadow-2xs">
               <Sparkles className="h-3.5 w-3.5 text-[var(--color-brand-strong)]" />
-              <span className="font-mono text-[11px] font-semibold tracking-widest text-[var(--color-text-secondary)] uppercase">
-                SOFTWARE · AI · DIGITAL OPERATIONS
+              <span className="font-mono text-[11px] font-bold tracking-widest text-[var(--color-text-secondary)] uppercase">
+                AI · SOFTWARE · AUTOMATION · CLOUD
               </span>
             </div>
 
             {/* Kinetic Typography Headline */}
             <h1 className="font-heading text-4xl font-extrabold tracking-tight text-[var(--color-text-primary)] sm:text-5xl md:text-6xl xl:text-7xl">
               <KineticText delay={0.05}>Complex problems.</KineticText>
-              <KineticText delay={0.25} className="text-[var(--color-brand-strong)]">
+              <KineticText delay={0.2} className="text-[var(--color-brand-strong)]">
                 Smarter systems.
               </KineticText>
             </h1>
 
-            {/* Narrative Supporting Copy */}
+            {/* Supporting Copy */}
             <p
               ref={subtitleRef}
               className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary)] sm:text-xl"
             >
-              Assestics builds intelligent software, automates business workflows and engineers reliable digital
-              infrastructure to help businesses operate better and grow with confidence.
+              Assestics builds AI-powered automation, custom software and reliable cloud systems that help businesses
+              streamline work and grow.
             </p>
 
-            {/* Primary & Secondary Actions */}
+            {/* CTAs */}
             <div ref={ctaRef} className="mt-8 flex flex-wrap items-center gap-4 pt-2">
               <Button asChild size="lg" className="group">
                 <Link href="/contact">
@@ -102,26 +102,11 @@ export function Hero() {
                 <Link href="/work">Explore our work</Link>
               </Button>
             </div>
-
-            {/* Verified Systems Credential Ribbon */}
-            <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-text-tertiary)] font-mono">
-              <div>
-                <span className="font-semibold text-[var(--color-text-primary)]">CORE:</span> AI Workflows
-              </div>
-              <div className="h-3 w-px bg-[var(--color-border)]" />
-              <div>
-                <span className="font-semibold text-[var(--color-text-primary)]">ENGINEERING:</span> Custom Software
-              </div>
-              <div className="h-3 w-px bg-[var(--color-border)]" />
-              <div>
-                <span className="font-semibold text-[var(--color-text-primary)]">OPERATIONS:</span> ERP & Supply Chain
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: Original Custom Self-Drawing SVG Workflow Scene */}
-          <div className="relative lg:col-span-6 xl:col-span-5">
-            <HeroWorkflowSVG />
+          {/* Right Column: Connected Systems Typography & Conduit Canvas */}
+          <div className="relative lg:col-span-6 xl:col-span-6">
+            <ConnectedHeroSystem />
           </div>
         </div>
       </Container>
