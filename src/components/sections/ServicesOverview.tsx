@@ -2,51 +2,90 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
 import { KineticText } from "@/components/motion/KineticText";
 import { ServiceVisualStage } from "@/components/sections/ServiceVisualStage";
-import { services } from "@/content/services";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+interface ServiceItem {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: "ai-automation",
+    number: "01",
+    title: "AI & Business Automation",
+    description: "AI agents, WhatsApp assistants and automated workflows that reduce repetitive work.",
+    href: "/services/ai-automation",
+  },
+  {
+    id: "software-engineering",
+    number: "02",
+    title: "Software & Digital Products",
+    description: "Websites, applications and custom software built around your business needs.",
+    href: "/services/software-engineering",
+  },
+  {
+    id: "cloud-devops",
+    number: "03",
+    title: "Cloud & DevOps Engineering",
+    description: "Reliable cloud infrastructure and automated software delivery.",
+    href: "/services/cloud-devops",
+  },
+  {
+    id: "business-systems",
+    number: "04",
+    title: "Business Systems & Supply Chain",
+    description: "Connected business operations, ERP solutions and supply-chain systems.",
+    href: "/services/business-systems",
+  },
+];
+
 export function ServicesOverview() {
-  const [activeServiceId, setActiveServiceId] = useState(services[0].id);
-  const activeService = services.find((s) => s.id === activeServiceId) || services[0];
+  const [activeId, setActiveId] = useState(SERVICES_DATA[0].id);
 
   return (
     <section
-      className="relative overflow-hidden py-24 lg:py-32"
-      aria-labelledby="services-index-title"
+      className="relative overflow-hidden py-24 lg:py-36 border-t border-[var(--color-border)] bg-[var(--color-canvas)]"
+      aria-labelledby="services-overview-title"
     >
-      <Container>
-        {/* Section Header */}
-        <div className="mb-16 border-b border-[var(--color-border)] pb-8 lg:mb-20">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <span className="font-mono text-xs font-semibold tracking-widest text-[var(--color-brand-strong)] uppercase">
-                SERVICES INDEX · THE CONNECTED SYSTEM
-              </span>
-              <h2
-                id="services-index-title"
-                className="mt-3 font-heading text-3xl font-bold tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl"
-              >
-                <KineticText triggerOnScroll>Technology that works together.</KineticText>
-              </h2>
-            </div>
-            <p className="max-w-md text-base leading-relaxed text-[var(--color-text-secondary)]">
-              From intelligent automation to reliable infrastructure, we design and build the systems behind better
-              business operations.
+      {/* 1320–1440px Responsive Centered Container with Balanced Outer Margins */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        {/* Full-width Section Introduction */}
+        <div className="mb-14 border-b border-[var(--color-border)] pb-8 lg:mb-18">
+          <div className="max-w-3xl">
+            <span className="font-mono text-xs font-semibold tracking-widest text-[var(--color-brand-strong)] uppercase">
+              WHAT WE BUILD
+            </span>
+            <h2
+              id="services-overview-title"
+              className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl"
+            >
+              <KineticText triggerOnScroll>Technology that works together.</KineticText>
+            </h2>
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-[var(--color-text-secondary)]">
+              From intelligent automation to custom software and cloud infrastructure, we build connected systems that
+              help businesses work better.
             </p>
           </div>
         </div>
 
-        {/* Split Interactive Systems Index Layout */}
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left Column (55%): Large Typographic List */}
-          <div className="space-y-4 lg:col-span-6 xl:col-span-6" role="tablist" aria-orientation="vertical">
-            {services.slice(0, 4).map((service, index) => {
-              const isSelected = service.id === activeServiceId;
-              const formattedIndex = `0${index + 1}`;
+        {/* Deliberate Two-Column Layout (42% Left vs 58% Right) with 48-64px Gap */}
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+          {/* Left Column (Approx 42%): Elegant Typographic Interactive List */}
+          <div
+            className="flex flex-col lg:col-span-5"
+            role="tablist"
+            aria-orientation="vertical"
+            aria-label="Assestics Core Services"
+          >
+            {SERVICES_DATA.map((service, index) => {
+              const isSelected = service.id === activeId;
 
               return (
                 <div
@@ -54,38 +93,46 @@ export function ServicesOverview() {
                   role="tab"
                   id={`service-tab-${service.id}`}
                   aria-selected={isSelected}
-                  aria-controls={`service-panel-${service.id}`}
+                  aria-controls={`service-visual-${service.id}`}
                   tabIndex={0}
-                  onClick={() => setActiveServiceId(service.id)}
+                  onClick={() => setActiveId(service.id)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      setActiveServiceId(service.id);
+                      setActiveId(service.id);
                     }
                   }}
-                  onMouseEnter={() => setActiveServiceId(service.id)}
                   className={cn(
-                    "group relative cursor-pointer rounded-xl border p-6 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]",
-                    isSelected
-                      ? "border-[var(--color-brand-primary)] bg-[var(--color-surface)] shadow-sm"
-                      : "border-[var(--color-border)]/60 bg-[var(--color-canvas)] hover:border-[var(--color-border)] hover:bg-[var(--color-surface)]/60"
+                    "group relative cursor-pointer border-b border-[var(--color-border)] py-6 lg:py-7 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]",
+                    index === 0 && "border-t border-[var(--color-border)]",
+                    isSelected ? "bg-[var(--color-surface)]/40" : "hover:bg-[var(--color-surface)]/20"
                   )}
                 >
-                  {/* Header Row */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
+                  {/* Subtle active left indicator bar */}
+                  <span
+                    className={cn(
+                      "absolute left-0 top-6 bottom-6 w-1 rounded-full transition-all duration-300",
+                      isSelected ? "bg-[var(--color-brand-primary)] opacity-100" : "opacity-0"
+                    )}
+                  />
+
+                  {/* Header Row: Index Number, Title, and Action Link */}
+                  <div className="flex items-start justify-between gap-4 pl-4 sm:pl-5">
+                    <div className="flex items-baseline gap-3.5">
                       <span
                         className={cn(
-                          "font-mono text-sm font-bold transition-colors",
-                          isSelected ? "text-[var(--color-brand-strong)]" : "text-[var(--color-text-tertiary)]"
+                          "font-mono text-sm font-bold transition-colors duration-200",
+                          isSelected ? "text-[var(--color-brand-strong)]" : "text-[var(--color-text-secondary)]"
                         )}
                       >
-                        {formattedIndex}
+                        {service.number}
                       </span>
                       <h3
                         className={cn(
-                          "font-heading text-xl font-bold transition-colors sm:text-2xl",
-                          isSelected ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)]"
+                          "font-heading text-xl font-bold tracking-tight transition-colors duration-200 sm:text-2xl",
+                          isSelected
+                            ? "text-[var(--color-text-primary)]"
+                            : "text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)]"
                         )}
                       >
                         {service.title}
@@ -93,8 +140,13 @@ export function ServicesOverview() {
                     </div>
 
                     <Link
-                      href={`/services/${service.id}`}
-                      className="p-1 text-[var(--color-text-tertiary)] transition-colors hover:text-[var(--color-brand-strong)]"
+                      href={service.href}
+                      className={cn(
+                        "p-1 transition-all duration-200 shrink-0",
+                        isSelected
+                          ? "text-[var(--color-brand-strong)] translate-x-0.5 -translate-y-0.5"
+                          : "text-[var(--color-text-tertiary)] opacity-60 group-hover:opacity-100 group-hover:text-[var(--color-text-primary)]"
+                      )}
                       aria-label={`View full details for ${service.title}`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -102,57 +154,36 @@ export function ServicesOverview() {
                     </Link>
                   </div>
 
-                  {/* Supporting Description */}
-                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                    {service.shortDescription}
+                  {/* Concise Description */}
+                  <p
+                    className={cn(
+                      "mt-2 pl-11 sm:pl-12 pr-4 text-sm leading-relaxed transition-colors duration-200",
+                      isSelected ? "text-[var(--color-text-primary)] font-medium" : "text-[var(--color-text-secondary)]"
+                    )}
+                  >
+                    {service.description}
                   </p>
 
-                  {/* Capability Tags Preview */}
-                  <div className="mt-4 flex flex-wrap gap-2 pt-2 border-t border-[var(--color-border)]/40">
-                    {service.capabilities.slice(0, 3).map((cap) => (
-                      <span
-                        key={cap}
-                        className={cn(
-                          "rounded px-2.5 py-0.5 font-mono text-[11px] transition-colors",
-                          isSelected
-                            ? "bg-[var(--color-surface-muted)] text-[var(--color-text-primary)] font-semibold"
-                            : "bg-transparent text-[var(--color-text-tertiary)]"
-                        )}
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Restrained Visual Connection to Right Column on Desktop */}
+                  {isSelected && (
+                    <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 w-6 h-px bg-gradient-to-r from-[var(--color-border)] to-[var(--color-brand-primary)] pointer-events-none" />
+                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Right Column (45%): Explanatory SVG Visualization Stage (Sticky on Desktop) */}
-          <div className="lg:sticky lg:top-28 lg:col-span-6 xl:col-span-6">
-            <ServiceVisualStage activeId={activeServiceId} />
-
-            {/* Direct Deep-Dive Action Card Below Visual */}
-            <div className="mt-6 flex items-center justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
-              <div>
-                <span className="font-mono text-xs font-semibold text-[var(--color-brand-strong)] uppercase">
-                  DEEP-DIVE DOCUMENTATION
-                </span>
-                <p className="text-sm font-bold text-[var(--color-text-primary)]">
-                  Explore full architecture, delivery phases & FAQs
-                </p>
-              </div>
-              <Link
-                href={`/services/${activeService.id}`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-text-primary)] px-4 py-2 font-mono text-xs font-bold text-[var(--color-canvas)] transition-transform hover:scale-[1.02]"
-              >
-                <span>OPEN SPEC</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
+          {/* Right Column (Approx 58%): Spacious Editorial Visual Stage */}
+          <div
+            id={`service-visual-${activeId}`}
+            role="tabpanel"
+            aria-labelledby={`service-tab-${activeId}`}
+            className="w-full lg:col-span-7 lg:sticky lg:top-28"
+          >
+            <ServiceVisualStage activeId={activeId} />
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

@@ -14,14 +14,14 @@ export function Container({
 }: ContainerProps) {
   const sizeStyles = {
     narrow: "max-w-4xl",
-    default: "max-w-7xl",
+    default: "max-w-[1360px]",
     wide: "max-w-[1440px]",
   };
 
   return (
     <div
       className={cn(
-        "w-full mx-auto px-4 sm:px-6 lg:px-8",
+        "w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10",
         sizeStyles[size],
         className
       )}
