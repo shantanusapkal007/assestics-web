@@ -1,0 +1,38 @@
+:root {
+  /* Canvas & Base Surfaces */
+  --color-canvas: #FCFBF8;
+  --color-canvas-secondary: #F3F2ED;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-muted: #EAE9E2;
+
+  /* Typography */
+  --color-text-primary: #202722;
+  --color-text-secondary: #687069;
+  --color-text-tertiary: #8E968F;
+  --color-text-inverse: #FFFFFF;
+
+  /* Structural Dividers & Borders */
+  --color-border: #E2E3DC;
+  --color-border-subtle: #ECECE6;
+  --color-border-strong: #C8CAC1;
+
+  /* Brand Colors Extracted from Genuine Logo #38D8E4 */
+  --color-brand-primary: #38D8E4;
+  --color-brand-strong: #0891B2;
+  --color-brand-soft: #D5F6F9;
+  --color-brand-wash: #EDFBFD;
+  --color-brand-contrast: #0E7490;
+
+  /* 3D Scene Highlight */
+  --color-3d-highlight: #38D8E4;
+  --color-3d-ceramic: #F7F6F1;
+  --color-3d-metal: #D4D6D0;
+  --color-3d-channel: #E4E5DF;
+
+  /* Focus & Elevation */
+  --color-focus-ring: #0891B2;
+  --shadow-subtle: 0 1px 3px rgba(32, 39, 34, 0.03), 0 4px 12px rgba(32, 39, 34, 0.02);
+  --shadow-elevated: 0 4px 20px -2px rgba(32, 39, 34, 0.05), 0 2px 6px -1px rgba(32, 39, 34, 0.03);
+  --shadow-floating: 0 20px 40px -10px rgba(32, 39, 34, 0.08), 0 8px 16px -4px rgba(32, 39, 34, 0.04);
+}

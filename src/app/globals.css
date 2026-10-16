@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme {
+  --color-canvas: #FCFBF8;
+  --color-canvas-secondary: #F3F2ED;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-muted: #EAE9E2;
+
+  --color-text-primary: #202722;
+  --color-text-secondary: #687069;
+  --color-text-tertiary: #8E968F;
+
+  --color-border: #E2E3DC;
+  --color-border-subtle: #ECECE6;
+  --color-border-strong: #C8CAC1;
+
+  --color-brand-primary: #38D8E4;
+  --color-brand-strong: #0891B2;
+  --color-brand-soft: #D5F6F9;
+  --color-brand-wash: #EDFBFD;
+  --color-brand-contrast: #0E7490;
+
+  --font-sans: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  --font-mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+}
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Modern web platform scrollbar */
+* {
+  scrollbar-color: #D4D6D0 transparent;
+  scrollbar-width: thin;
+}
+
+::selection {
+  background: var(--color-brand-primary);
+  color: #102022;
+}
+
+/* Accessible focus styling */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tactile Architectural Card styling */
+.tactile-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-subtle);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tactile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+  border-color: #C8CAC1;
+}
+
+/* Monospace micro-tag */
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong);
+  font-weight: 600;
+}
