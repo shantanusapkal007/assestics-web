@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CommandPalette } from "@/components/ui/CommandPalette";
+import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 import { siteConfig } from "@/content/site";
 
 const inter = Inter({
@@ -21,6 +23,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -107,7 +116,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${playfair.variable}`}
     >
       <head>
         <script
@@ -116,9 +125,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#FCFBF8] text-[#202722] antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CommandPalette />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

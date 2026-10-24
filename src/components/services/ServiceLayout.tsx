@@ -5,6 +5,7 @@ import { ServicePillar } from "@/content/services";
 import { Button } from "@/components/ui/Button";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ArrowLeft, CheckCircle2, HelpCircle } from "lucide-react";
+import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
 
 export interface ServiceLayoutProps {
   service: ServicePillar;
@@ -32,9 +33,8 @@ export function ServiceLayout({
 
           {/* Service Header */}
           <div className="space-y-6 max-w-4xl mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EDFBFD] border border-[#D5F6F9]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0891B2]" />
-              <span className="mono-tag">PILLAR {service.number} · CAPABILITY</span>
+            <div className="mb-2">
+              <EditorialEyebrow step={`PILLAR ${service.number}`} label="CORE CAPABILITY" variant="plate" />
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#202722] leading-[1.1] [text-wrap:balance]">
@@ -84,7 +84,7 @@ export function ServiceLayout({
                       key={cap}
                       className="p-4 rounded-xl bg-white border border-[#E2E3DC] flex items-start gap-3"
                     >
-                      <span className="w-2 h-2 rounded-full bg-[#38D8E4] shrink-0 mt-1.5" />
+                      <span className="font-mono text-[var(--color-brand-strong)] font-bold shrink-0 mt-0.5">+</span>
                       <span className="text-sm font-medium text-[#202722] leading-snug">
                         {cap}
                       </span>
@@ -152,7 +152,7 @@ export function ServiceLayout({
                       key={idx}
                       className="flex items-start gap-3 text-sm text-[#687069]"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38D8E4] shrink-0 mt-2" />
+                      <span className="font-mono text-[var(--color-brand-strong)] font-bold shrink-0 mt-0.5">+</span>
                       <span className="leading-relaxed">{deliv}</span>
                     </li>
                   ))}

@@ -76,8 +76,8 @@ export function ContactForm() {
     <div className="tactile-card rounded-2xl p-6 sm:p-10 bg-white border border-[#E2E3DC] shadow-[0_4px_24px_rgba(32,39,34,0.04)]">
       {status === "success" ? (
         <div className="py-12 text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-[#EDFBFD] border border-[#D5F6F9] mx-auto flex items-center justify-center text-[#0891B2]">
-            <CheckCircle2 className="w-8 h-8" />
+          <div className="w-14 h-14 rounded-[4px] bg-[var(--color-surface)] border border-[var(--color-border-strong)] shadow-2xs mx-auto flex items-center justify-center text-[var(--color-brand-strong)]">
+            <CheckCircle2 className="w-7 h-7" />
           </div>
           <div className="space-y-2">
             <h3 className="text-2xl font-bold text-[#202722]">

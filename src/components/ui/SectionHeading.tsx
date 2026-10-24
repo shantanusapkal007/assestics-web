@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
 
 export interface SectionHeadingProps {
   tag?: string;
@@ -16,6 +17,17 @@ export function SectionHeading({
   align = "left",
   className,
 }: SectionHeadingProps) {
+  let step: string | undefined = undefined;
+  let label = tag || "";
+
+  if (tag) {
+    const parts = tag.split(/[\/\/·•—]/).map((s) => s.trim()).filter(Boolean);
+    if (parts.length > 1 && (/^\d+$/.test(parts[0]) || parts[0].length <= 4)) {
+      step = parts[0];
+      label = parts.slice(1).join(" // ");
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -25,14 +37,8 @@ export function SectionHeading({
       )}
     >
       {tag && (
-        <div
-          className={cn(
-            "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EDFBFD] border border-[#D5F6F9]",
-            align === "center" ? "mx-auto" : ""
-          )}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#0891B2] animate-pulse" />
-          <span className="mono-tag">{tag}</span>
+        <div className={cn("mb-3", align === "center" ? "flex justify-center" : "")}>
+          <EditorialEyebrow step={step} label={label} variant="plate" />
         </div>
       )}
       <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#202722] leading-[1.15] [text-wrap:balance]">

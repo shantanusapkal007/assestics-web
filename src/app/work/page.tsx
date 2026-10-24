@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/content/projects";
 import { LinkArrow } from "@/components/ui/LinkArrow";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { SectionBridge } from "@/components/sections/SectionBridge";
 import { ShutterImage } from "@/components/motion/ShutterImage";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] border-b border-[#E2E3DC]">
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] ambient-mesh relative">
         <Container>
           <SectionHeading
             tag="PORTFOLIO · ARCHITECTURAL ARCHIVE"
@@ -30,7 +31,7 @@ export default function WorkPage() {
             {projects.map((project, idx) => (
               <div
                 key={project.slug}
-                className="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 sm:p-12 transition-all hover:border-[var(--color-brand-primary)] shadow-xs"
+                className="group rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-8 lg:p-12 transition-all duration-500 hover:border-[rgba(56,216,228,0.4)] hover:shadow-[0_8px_32px_-4px_rgba(56,216,228,0.12),0_4px_16px_-2px_rgba(32,39,34,0.06)]"
               >
                 <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
                   {/* Left Column: Visual with Shutter Aperture Reveal */}
@@ -41,7 +42,7 @@ export default function WorkPage() {
                         alt={project.title}
                         aspectRatio="aspect-16/10"
                         variant={idx % 2 === 0 ? "aperture" : "horizontal"}
-                        className="border border-[var(--color-border)] shadow-xs transition-transform duration-500 group-hover:scale-[1.01]"
+                        className="border border-[var(--color-border)] shadow-xs transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-[0_4px_20px_rgba(32,39,34,0.08)]"
                       />
                     </Link>
                   </div>
@@ -49,11 +50,13 @@ export default function WorkPage() {
                   {/* Right Column: Metadata and Details */}
                   <div className="flex flex-col justify-between space-y-6 lg:col-span-6">
                     <div>
-                      <div className="flex items-center gap-3 font-mono text-xs text-[var(--color-text-secondary)]">
-                        <span className="font-bold text-[var(--color-brand-strong)]">0{idx + 1}</span>
-                        <span>·</span>
-                        <span className="font-semibold uppercase tracking-wider">{project.category}</span>
-                        <span>·</span>
+                      <div className="flex items-center gap-2.5 font-mono text-xs text-[var(--color-text-secondary)]">
+                        <span className="font-mono text-[9px] font-black text-white bg-[#161B17] px-1.5 py-0.5 rounded-[2px]">
+                          CASE.0{idx + 1}
+                        </span>
+                        <span className="text-[var(--color-brand-strong)] font-bold">//</span>
+                        <span className="font-bold uppercase tracking-wider text-[var(--color-text-primary)]">{project.category}</span>
+                        <span className="text-[var(--color-brand-strong)] font-bold">//</span>
                         <span>{project.year}</span>
                       </div>
 
@@ -77,7 +80,7 @@ export default function WorkPage() {
                         {project.techStack.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1 font-mono text-xs text-[var(--color-text-secondary)]"
+                            className="rounded-[2px] border border-[var(--color-border-strong)]/70 bg-[var(--color-surface)] px-2.5 py-1 font-mono text-[11px] text-[var(--color-text-secondary)] shadow-2xs"
                           >
                             {tech}
                           </span>
@@ -101,6 +104,13 @@ export default function WorkPage() {
           </div>
         </Container>
       </section>
+
+      <SectionBridge
+        step="02"
+        tag="SYSTEM INQUIRY"
+        title="Have a custom architecture in mind?"
+        subtitle="Let's engineer an automated, scalable solution tailored precisely to your operational constraints."
+      />
 
       <FinalCTA />
     </>

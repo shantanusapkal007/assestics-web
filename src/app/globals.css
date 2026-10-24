@@ -23,45 +23,101 @@
   --color-brand-contrast: #0E7490;
 
   --font-sans: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  --font-heading: var(--font-display, "Space Grotesk", sans-serif);
+  --font-display: var(--font-display, "Space Grotesk", sans-serif);
   --font-mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  --font-serif: var(--font-serif, "Playfair Display", Georgia, serif);
 }
 
 html {
   background-color: var(--color-canvas);
   color: var(--color-text-primary);
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ================================================================
+   Lenis Smooth Scrolling Architecture
+   ================================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
   background-color: var(--color-canvas);
   color: var(--color-text-primary);
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
-/* Modern web platform scrollbar */
+/* ================================================================
+   Premium Scrollbar
+   ================================================================ */
 * {
-  scrollbar-color: #D4D6D0 transparent;
+  scrollbar-color: rgba(8, 145, 178, 0.25) transparent;
   scrollbar-width: thin;
 }
 
-::selection {
-  background: var(--color-brand-primary);
-  color: #102022;
+*::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Accessible focus styling */
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(8, 145, 178, 0.2);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(8, 145, 178, 0.4);
+}
+
+/* ================================================================
+   Selection
+   ================================================================ */
+::selection {
+  background: rgba(56, 216, 228, 0.25);
+  color: #0E7490;
+}
+
+/* ================================================================
+   Focus Styling
+   ================================================================ */
 :focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Reduced motion preference */
+/* ================================================================
+   Reduced Motion
+   ================================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -73,28 +129,447 @@ body {
   }
 }
 
-/* Tactile Architectural Card styling */
+/* ================================================================
+   Premium Tactile Card — Elevated Interactive Surface
+   ================================================================ */
 .tactile-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-subtle);
-  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 400ms var(--ease-premium),
+              box-shadow 400ms var(--ease-premium),
+              border-color 400ms var(--ease-premium);
 }
 
 .tactile-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-elevated);
-  border-color: #C8CAC1;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-floating);
+  border-color: rgba(56, 216, 228, 0.35);
 }
 
-/* Monospace micro-tag */
+/* ================================================================
+   Monospace Micro-Tag — Refined Precision Label
+   ================================================================ */
 .mono-tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-brand-strong);
   font-weight: 600;
 }
+
+/* ================================================================
+   Premium Ambient Gradient Mesh (Subtle Background Enhancement)
+   ================================================================ */
+.ambient-mesh {
+  position: relative;
+}
+
+.ambient-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 40% at 20% -10%, rgba(56, 216, 228, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 30% at 80% 110%, rgba(8, 145, 178, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================================
+   Glassmorphism Panel
+   ================================================================ */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+/* ================================================================
+   Premium Gradient Text
+   ================================================================ */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ================================================================
+   Shimmer Highlight (Subtle Light Sweep)
+   ================================================================ */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-highlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 216, 228, 0.06) 50%,
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ================================================================
+   Premium Pulse Dot (Status Indicator)
+   ================================================================ */
+@keyframes premium-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+
+.pulse-dot {
+  animation: premium-pulse 2.5s ease-in-out infinite;
+}
+
+/* ================================================================
+   Brand Glow Effect
+   ================================================================ */
+.brand-glow {
+  box-shadow: var(--shadow-brand-subtle);
+  transition: box-shadow 400ms var(--ease-premium);
+}
+
+.brand-glow:hover {
+  box-shadow: var(--shadow-brand-medium);
+}
+
+/* ================================================================
+   Noise Texture Overlay (Ultra-subtle)
+   ================================================================ */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* ================================================================
+   Architectural Blueprint Grid Overlay (Toggled via ⌥G / Alt+G)
+   ================================================================ */
+html[data-grid="on"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(8, 145, 178, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(8, 145, 178, 0.04) 1px, transparent 1px);
+  background-size: calc((100vw - 2rem) / 12) 24px;
+  background-position: 1rem 0;
+}
+
+html[data-grid="on"]::after {
+  content: 'ARCHITECTURAL GRID: 12_COL_FLUID · BASELINE: 24PX · [ALT+G TO TOGGLE]';
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  z-index: 10000;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  background: rgba(32, 39, 34, 0.9);
+  color: #38D8E4;
+  border: 1px solid rgba(56, 216, 228, 0.4);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================================================
+   High-End Editorial Surface (Clean, Tactile, Pure Luxury)
+   ================================================================ */
+.editorial-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px -2px rgba(32, 39, 34, 0.04), 0 2px 6px -1px rgba(32, 39, 34, 0.02);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(8, 145, 178, 0.35);
+  box-shadow: 0 16px 36px -6px rgba(32, 39, 34, 0.08), 0 4px 12px -2px rgba(32, 39, 34, 0.03);
+}
+
+/* ================================================================
+   Artistic Journey & Haute Couture Digital Art Utilities
+   ================================================================ */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbit-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbit-spin-rev {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes celestial-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+
+@keyframes laser-pulse-glide {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 8s linear infinite;
+}
+
+.animate-orbit-spin {
+  animation: orbit-spin 24s linear infinite;
+}
+
+.animate-orbit-spin-rev {
+  animation: orbit-spin-rev 18s linear infinite;
+}
+
+.animate-celestial-float {
+  animation: celestial-float 6s ease-in-out infinite;
+}
+
+.animate-aurora-pulse {
+  animation: aurora-pulse 10s ease-in-out infinite;
+}
+
+/* Holographic Foil Refraction */
+.holographic-badge {
+  background: linear-gradient(
+    135deg,
+    rgba(56, 218, 228, 0.15) 0%,
+    rgba(129, 140, 248, 0.2) 35%,
+    rgba(251, 191, 36, 0.15) 70%,
+    rgba(56, 218, 228, 0.15) 100%
+  );
+  background-size: 200% 200%;
+  animation: shimmer 6s ease-in-out infinite;
+  border: 1px solid rgba(56, 218, 228, 0.35);
+  box-shadow: 0 4px 16px -2px rgba(56, 218, 228, 0.2);
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+/* ================================================================
+   Relevo Tactile Milled Relief Utilities & Verification Laser Sweep
+   ================================================================ */
+.tactile-emboss {
+  box-shadow: var(--shadow-milled-emboss);
+}
+
+.tactile-deboss {
+  box-shadow: var(--shadow-milled-deboss);
+}
+
+.tactile-press {
+  box-shadow: var(--shadow-milled-emboss);
+  transition: transform 180ms cubic-bezier(0.3, 0.7, 0.2, 1), box-shadow 180ms cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.tactile-press:active {
+  transform: translate(1px, 2px);
+  box-shadow: var(--shadow-milled-pressed);
+}
+
+@keyframes laser-verification-sweep {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(280px); opacity: 0; }
+}
+
+.animate-laser-sweep {
+  animation: laser-verification-sweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ================================================================
+   Nesil Noble Inspiration: Architectural CAD Selection Reticle & Strike
+   ================================================================ */
+.architectural-sel {
+  position: absolute;
+  inset: -6px -10px;
+  border: 1px dashed rgba(22, 163, 74, 0.45);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, border-color 0.3s ease;
+}
+
+.architectural-sel.active {
+  opacity: 1;
+}
+
+.architectural-sel .anchor {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border: 1.5px solid #161b17;
+  border-radius: 1px;
+}
+
+.architectural-sel .anchor-tl { top: -3.5px; left: -3.5px; }
+.architectural-sel .anchor-tr { top: -3.5px; right: -3.5px; }
+.architectural-sel .anchor-bl { bottom: -3.5px; left: -3.5px; }
+.architectural-sel .anchor-br { bottom: -3.5px; right: -3.5px; }
+
+.architectural-dim {
+  position: absolute;
+  bottom: -22px;
+  right: 0;
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--color-brand-strong);
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.architectural-dim.active {
+  opacity: 1;
+}
+
+@keyframes strike-draw {
+  from { stroke-dashoffset: 360; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-strike-path {
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  animation: strike-draw 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ================================================================
+   Luxury Signal Conduit, Border Sheen & Precision Sonar Ping
+   ================================================================ */
+@keyframes conduit-dash {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+.animate-conduit-flow {
+  stroke-dasharray: 6 6;
+  animation: conduit-dash 1.4s linear infinite;
+}
+
+@keyframes sonar-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.animate-sonar-ring {
+  animation: sonar-ring 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes border-sheen-sweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.luxury-border-glow {
+  position: relative;
+}
+
+.luxury-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(56, 216, 228, 0) 0%,
+    rgba(56, 216, 228, 0.5) 50%,
+    rgba(56, 216, 228, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: border-sheen-sweep 5s ease-in-out infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes bar-pulse {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.72);
+  }
+}
+
+.animate-bar-live-1 {
+  animation: bar-pulse 2.2s ease-in-out infinite;
+  transform-origin: bottom;
+}
+.animate-bar-live-2 {
+  animation: bar-pulse 2.8s ease-in-out 0.3s infinite;
+  transform-origin: bottom;
+}
+.animate-bar-live-3 {
+  animation: bar-pulse 1.9s ease-in-out 0.7s infinite;
+  transform-origin: bottom;
+}
+
+
+
+

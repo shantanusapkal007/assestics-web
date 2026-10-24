@@ -6,6 +6,7 @@ import { siteConfig } from "@/content/site";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { generalFaqs } from "@/content/faqs";
 import { Mail, Phone, Clock, ArrowUpRight, HelpCircle } from "lucide-react";
+import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
 
 export const metadata: Metadata = {
   title: "Contact & Project Inquiries — Assestics",
@@ -15,12 +16,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-16 pb-24 md:pt-24 md:pb-32 bg-[#FCFBF8]">
+    <div className="pt-16 pb-24 md:pt-24 md:pb-32 bg-[#FCFBF8] ambient-mesh relative">
       <Container>
         <SectionHeading
           tag="GET IN TOUCH"
-          title="Have a problem worth solving?"
-          description="Tell us what you are trying to improve. Our engineering and strategy team will review your requirements and respond within 24 hours."
+          title="Let's talk about your project."
+          description="Tell us what you want to build or improve. We will review your notes and reply within 24 hours with ideas and next steps."
           className="mb-16"
         />
 
@@ -41,9 +42,9 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[#38D8E4] border border-[#E2E3DC] transition-all group"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[rgba(56,216,228,0.4)] border border-[#E2E3DC] transition-all duration-300 group hover:shadow-[0_2px_12px_rgba(56,216,228,0.1)]"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-[#0891B2] shrink-0 border border-[#E2E3DC]">
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(56,216,228,0.06)] flex items-center justify-center text-[#0891B2] shrink-0 border border-[rgba(56,216,228,0.15)] group-hover:shadow-[0_2px_12px_rgba(56,216,228,0.15)] transition-all duration-300">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -58,9 +59,9 @@ export default function ContactPage() {
 
                 <a
                   href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[#38D8E4] border border-[#E2E3DC] transition-all group"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[rgba(56,216,228,0.4)] border border-[#E2E3DC] transition-all duration-300 group hover:shadow-[0_2px_12px_rgba(56,216,228,0.1)]"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-[#0891B2] shrink-0 border border-[#E2E3DC]">
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(56,216,228,0.06)] flex items-center justify-center text-[#0891B2] shrink-0 border border-[rgba(56,216,228,0.15)] group-hover:shadow-[0_2px_12px_rgba(56,216,228,0.15)] transition-all duration-300">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -74,7 +75,7 @@ export default function ContactPage() {
                 </a>
 
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-[#FCFBF8] border border-[#E2E3DC]">
-                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-[#0891B2] shrink-0 border border-[#E2E3DC]">
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(56,216,228,0.06)] flex items-center justify-center text-[#0891B2] shrink-0 border border-[rgba(56,216,228,0.15)]">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
@@ -98,7 +99,7 @@ export default function ContactPage() {
                     href={siteConfig.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[#38D8E4] border border-[#E2E3DC] text-[#202722] transition-all"
+                    className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider px-3 py-1.5 rounded-[3px] bg-white hover:border-[var(--color-brand-strong)] border border-[#E2E3DC] text-[#202722] shadow-2xs transition-all"
                   >
                     <span>LinkedIn</span>
                     <ArrowUpRight className="w-3 h-3 text-[#0891B2]" />
@@ -107,7 +108,7 @@ export default function ContactPage() {
                     href={siteConfig.socials.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#F3F2ED] hover:bg-[#EDFBFD] hover:border-[#38D8E4] border border-[#E2E3DC] text-[#202722] transition-all"
+                    className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider px-3 py-1.5 rounded-[3px] bg-white hover:border-[var(--color-brand-strong)] border border-[#E2E3DC] text-[#202722] shadow-2xs transition-all"
                   >
                     <span>Instagram</span>
                     <ArrowUpRight className="w-3 h-3 text-[#0891B2]" />
@@ -119,9 +120,16 @@ export default function ContactPage() {
         </div>
 
         {/* Engagement FAQs */}
-        <div className="max-w-4xl mx-auto pt-16 border-t border-[#E2E3DC] space-y-8">
-          <div className="text-center space-y-2">
-            <span className="mono-tag">ENGAGEMENT PROCESS</span>
+        <div className="relative max-w-4xl mx-auto pt-16 space-y-8">
+          <div
+            className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(226,227,220,0.6) 20%, rgba(56,216,228,0.4) 50%, rgba(226,227,220,0.6) 80%, transparent 100%)",
+            }}
+          />
+          <div className="text-center space-y-3">
+            <EditorialEyebrow step="01" label="ENGAGEMENT PROCESS" variant="plate" />
             <h2 className="text-3xl font-bold text-[#202722]">
               What happens after you reach out?
             </h2>
@@ -136,8 +144,8 @@ export default function ContactPage() {
                 Discovery Call
               </div>
               <p className="text-xs text-[#687069] leading-relaxed">
-                A 30-minute technical consultation to understand your constraints,
-                existing database topology, and business goals.
+                A friendly 30-minute call to understand your business goals,
+                current tools, and where your team loses time.
               </p>
             </div>
 
@@ -170,8 +178,8 @@ export default function ContactPage() {
 
           {/* FAQ Accordion */}
           <div className="pt-16 border-t border-[#E2E3DC] space-y-6">
-            <div className="text-center space-y-2">
-              <span className="mono-tag">FAQ</span>
+            <div className="text-center space-y-3">
+              <EditorialEyebrow step="02" label="FREQUENTLY ASKED QUESTIONS" variant="plate" />
               <h2 className="text-3xl font-bold text-[#202722]">
                 Common Questions
               </h2>

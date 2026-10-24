@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -20,33 +20,60 @@ const NAV_LINKS = [
 export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
+    let ticking = false;
+    let cachedTotalHeight = 0;
 
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress(Math.min(100, Math.max(0, (scrollY / totalHeight) * 100)));
+    const measureHeight = () => {
+      cachedTotalHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    };
+
+    measureHeight();
+    window.addEventListener("resize", measureHeight, { passive: true });
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const nextIsScrolled = scrollY > 20;
+          setIsScrolled((prev) => (prev !== nextIsScrolled ? nextIsScrolled : prev));
+
+          if (progressBarRef.current && cachedTotalHeight > 0) {
+            const p = Math.min(1, Math.max(0, scrollY / cachedTotalHeight));
+            progressBarRef.current.style.transform = `scaleX(${p})`;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", measureHeight);
+    };
   }, []);
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "border-b border-[var(--color-border)]/80 bg-[var(--color-canvas)]/90 backdrop-blur-md shadow-2xs py-3"
+            ? "py-2.5 shadow-[0_1px_3px_rgba(32,39,34,0.04),0_8px_24px_rgba(32,39,34,0.03)]"
             : "bg-transparent py-5"
         )}
+        style={isScrolled ? {
+          background: 'rgba(252, 251, 248, 0.78)',
+          backdropFilter: 'blur(20px) saturate(1.6)',
+          WebkitBackdropFilter: 'blur(20px) saturate(1.6)',
+          borderBottom: '1px solid rgba(226, 227, 220, 0.5)',
+        } : undefined}
       >
         <Container>
           <div className="flex items-center justify-between">
@@ -56,20 +83,23 @@ export function Header() {
               className="group flex items-center gap-3 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] rounded-sm"
               aria-label="Assestics Home"
             >
-              <div className="relative h-7 w-28 sm:h-8 sm:w-32">
+              <div className="relative h-8 w-8 sm:h-9 sm:w-9 shrink-0">
                 <Image
                   src="/images/logo.png"
-                  alt="Assestics"
+                  alt=""
                   fill
-                  sizes="(max-width: 640px) 112px, 128px"
+                  sizes="(max-width: 640px) 32px, 36px"
                   priority
-                  className="object-contain object-left transition-transform duration-300 group-hover:scale-102"
+                  className="object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
                 />
               </div>
+              <span className="font-heading text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--color-text-primary)]">
+                Assestics
+              </span>
             </Link>
 
             {/* Desktop Navigation Links with Active System Indicator */}
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+            <nav className="hidden md:flex items-center gap-0.5" aria-label="Main Navigation">
               {NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
                 return (
@@ -77,49 +107,83 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "relative px-4 py-2 text-sm font-medium transition-colors rounded-md",
+                      "group relative px-3.5 py-1.5 text-sm font-medium transition-all duration-300 rounded-[3px]",
                       isActive
-                        ? "text-[var(--color-text-primary)] font-semibold"
-                        : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+                        ? "text-[var(--color-brand-contrast)] font-semibold bg-[rgba(56,216,228,0.08)]"
+                        : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[rgba(32,39,34,0.04)]"
                     )}
                   >
                     {link.label}
-                    {/* Active / Hover Indicator Line */}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-[var(--color-brand-primary)]" />
-                    )}
+                    {/* Two26-Style Organic Accent Underline */}
+                    <span
+                      className={cn(
+                        "absolute bottom-1 left-3.5 right-3.5 h-[1.5px] rounded-[1px] transition-all duration-300 origin-left",
+                        isActive
+                          ? "bg-[var(--color-brand-strong)] scale-x-100 opacity-100"
+                          : "bg-[var(--color-brand-primary)] scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                      )}
+                    />
                   </Link>
                 );
               })}
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-4">
-              <Button asChild size="sm" className="group">
+            <div className="hidden md:flex items-center gap-3">
+              {/* Command Palette Trigger Plate */}
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+                className="group flex items-center gap-2 rounded-[3px] border border-[var(--color-border-strong)]/85 bg-[var(--color-surface)]/90 px-3 py-1.5 text-xs text-[var(--color-text-secondary)] shadow-2xs transition-all hover:border-[var(--color-brand-strong)] hover:bg-[var(--color-surface)] hover:text-[var(--color-brand-contrast)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] select-none"
+                aria-label="Open Command Terminal (⌘K)"
+              >
+                <span className="font-mono text-[11px] font-bold text-[var(--color-text-tertiary)] group-hover:text-[var(--color-brand-strong)]">
+                  ⌘K
+                </span>
+                <span className="h-3 w-px bg-[var(--color-border)]" />
+                <span className="font-medium">Terminal</span>
+              </button>
+
+              <Button asChild size="sm" className="group shadow-[0_2px_12px_rgba(32,39,34,0.08)]">
                 <Link href="/contact">
                   Discuss a project
-                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="flex md:hidden p-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]"
-              aria-label="Open Navigation Menu"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
+            {/* Mobile Actions: Command Palette button + Hamburger */}
+            <div className="flex md:hidden items-center gap-2">
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+                className="flex items-center justify-center h-9 w-9 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/90 text-xs font-mono font-bold text-[var(--color-brand-contrast)]"
+                aria-label="Open Command Terminal"
+              >
+                ⌘K
+              </button>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="flex p-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/90 backdrop-blur-sm text-[var(--color-text-primary)] hover:bg-[var(--color-surface-muted)] hover:border-[var(--color-brand-primary)]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] transition-all duration-300"
+                aria-label="Open Navigation Menu"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </Container>
 
-        {/* Global Scroll Progress Bar at the bottom of Header */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-transparent">
+        {/* Global Scroll Progress Bar & Millimeter Calibration Ruler */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-transparent overflow-hidden">
           <div
-            className="h-full bg-[var(--color-brand-primary)] transition-[width] duration-150 ease-out"
-            style={{ width: `${scrollProgress}%` }}
+            ref={progressBarRef}
+            className="h-full w-full origin-left will-change-transform transition-transform duration-75 ease-out"
+            style={{
+              transform: "scaleX(0)",
+              background: "linear-gradient(90deg, #38D8E4, #0891B2, #0E7490)",
+              boxShadow: "0 0 10px rgba(56, 216, 228, 0.5)",
+            }}
           />
         </div>
       </header>

@@ -109,12 +109,11 @@ export function HeroWorkflowSVG() {
       {/* Top subtle system bar */}
       <div className="mb-4 flex items-center justify-between border-b border-[var(--color-border)] pb-3">
         <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-brand-primary)] opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-brand-primary)]" />
+          <span className="font-mono text-[9px] font-black text-white bg-[#161B17] px-1.5 py-0.5 rounded-[2px]">
+            TOPOLOGY
           </span>
-          <span className="font-mono text-xs font-semibold tracking-wider text-[var(--color-text-secondary)] uppercase">
-            SYSTEM TOPOLOGY · VERIFIED WORKFLOW
+          <span className="font-mono text-xs font-bold tracking-wider text-[var(--color-text-primary)] uppercase">
+            VERIFIED WORKFLOW // SECURE MESH
           </span>
         </div>
         <div className="flex items-center gap-3 font-mono text-[11px] text-[var(--color-text-tertiary)]">

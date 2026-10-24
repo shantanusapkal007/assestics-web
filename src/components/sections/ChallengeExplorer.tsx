@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { KineticText } from "@/components/motion/KineticText";
-import { ArrowRight, Bot, Layers, Cloud, Boxes } from "lucide-react";
+import { ArrowRight, Layers, Cloud, Boxes } from "lucide-react";
+import { AgentNexusIcon } from "@/components/ui/ArchitecturalIcons";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +24,7 @@ interface Challenge {
 const CHALLENGES: Challenge[] = [
   {
     id: "repetitive-work",
-    icon: Bot,
+    icon: AgentNexusIcon,
     prompt: "Too much repetitive manual work slowing customer responses.",
     category: "AI & WORKFLOW AUTOMATION",
     solutionTitle: "Autonomous Agents & WhatsApp Workflows",

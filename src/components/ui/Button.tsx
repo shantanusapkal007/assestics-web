@@ -23,23 +23,23 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+    "inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none relative overflow-hidden";
 
   const sizeStyles = {
-    sm: "text-xs px-3.5 py-1.5 gap-1.5",
-    md: "text-sm px-5 py-2.5 gap-2",
-    lg: "text-base px-7 py-3.5 gap-2.5 font-semibold",
+    sm: "text-xs px-4 py-2 gap-1.5",
+    md: "text-sm px-6 py-2.5 gap-2",
+    lg: "text-base px-8 py-3.5 gap-2.5 font-semibold",
   };
 
   const variantStyles = {
     primary:
-      "bg-[#202722] text-white hover:bg-[#121613] hover:shadow-md active:scale-[0.98] focus-visible:outline-[#202722]",
+      "bg-[#202722] text-white hover:bg-[#121613] hover:shadow-[0_8px_24px_-4px_rgba(32,39,34,0.25)] active:scale-[0.97] focus-visible:outline-[#202722] border border-transparent hover:border-[rgba(56,216,228,0.15)]",
     brand:
-      "bg-[#38D8E4] text-[#102022] font-semibold hover:bg-[#25c4d0] hover:shadow-[0_4px_20px_rgba(56,216,228,0.35)] active:scale-[0.98] focus-visible:outline-[#0891B2]",
+      "bg-gradient-to-r from-[#38D8E4] to-[#0891B2] text-[#102022] font-semibold hover:from-[#25c4d0] hover:to-[#067a98] hover:shadow-[0_8px_32px_rgba(56,216,228,0.35)] active:scale-[0.97] focus-visible:outline-[#0891B2]",
     outline:
-      "bg-white border border-[#E2E3DC] text-[#202722] hover:bg-[#F3F2ED] hover:border-[#C8CAC1] active:scale-[0.98] focus-visible:outline-[#202722]",
+      "bg-white/80 backdrop-blur-sm border border-[#E2E3DC] text-[#202722] hover:bg-[#F3F2ED] hover:border-[#38D8E4]/40 hover:shadow-[0_4px_16px_rgba(32,39,34,0.06)] active:scale-[0.97] focus-visible:outline-[#202722]",
     ghost:
-      "bg-transparent text-[#202722] hover:bg-[#F3F2ED] active:scale-[0.98] focus-visible:outline-[#202722]",
+      "bg-transparent text-[#202722] hover:bg-[#F3F2ED] active:scale-[0.97] focus-visible:outline-[#202722]",
   };
 
   const combinedClass = cn(

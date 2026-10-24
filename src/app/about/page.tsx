@@ -5,12 +5,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/content/site";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { SectionBridge } from "@/components/sections/SectionBridge";
 import {
   Compass,
   Cpu,
   ShieldCheck,
   GraduationCap,
 } from "lucide-react";
+import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
 
 export const metadata: Metadata = {
   title: "About Assestics — Company, Team & Engineering Principles",
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] border-b border-[#E2E3DC]">
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] ambient-mesh relative">
         <Container>
           {/* Header */}
           <SectionHeading
@@ -32,10 +34,8 @@ export default function AboutPage() {
           />
 
           {/* Core Philosophy Banner */}
-          <div className="tactile-card rounded-2xl p-8 sm:p-12 bg-white border border-[#E2E3DC] mb-20 space-y-6">
-            <div className="text-xs font-mono uppercase tracking-widest text-[#0891B2] font-semibold">
-              OUR ENGINEERING PRINCIPLE
-            </div>
+          <div className="tactile-card rounded-2xl p-5 sm:p-8 lg:p-12 bg-white border border-[#E2E3DC] mb-16 sm:mb-20 space-y-6">
+            <EditorialEyebrow step="01" label="OUR ENGINEERING PRINCIPLE" variant="plate" />
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202722]">
               &ldquo;Stability first. Then speed. Then scale.&rdquo;
             </h2>
@@ -60,8 +60,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
             {/* Founder Portrait */}
             <div className="lg:col-span-5 relative">
-              <div className="rounded-2xl overflow-hidden border border-[#E2E3DC] bg-white shadow-[0_8px_30px_rgba(32,39,34,0.06)]">
-                <div className="relative h-[480px] sm:h-[540px] w-full bg-[#EAE9E2]">
+              <div className="rounded-2xl overflow-hidden border border-[#E2E3DC] bg-white shadow-[0_8px_30px_rgba(32,39,34,0.06)] hover:shadow-[0_12px_40px_rgba(32,39,34,0.10)] transition-shadow duration-500">
+                <div className="relative h-[340px] sm:h-[480px] lg:h-[540px] w-full bg-[#EAE9E2]">
                   <Image
                     src={siteConfig.founder.image}
                     alt={`${siteConfig.founder.name} - ${siteConfig.founder.role}`}
@@ -84,11 +84,9 @@ export default function AboutPage() {
             {/* Founder Bio & Academic Credentials */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EDFBFD] border border-[#D5F6F9]">
-                  <GraduationCap className="w-4 h-4 text-[#0891B2]" />
-                  <span className="mono-tag text-[10px]">
-                    TECHNICAL LEADERSHIP
-                  </span>
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-[2px] bg-[#FCFBF8] border border-[var(--color-border-strong)]/80 shadow-2xs font-mono text-[10.5px] font-bold text-[var(--color-text-primary)]">
+                  <GraduationCap className="w-3.5 h-3.5 text-[var(--color-brand-strong)]" />
+                  <span className="tracking-wider">TECHNICAL LEADERSHIP</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202722]">
                   Grounded in Industrial Rigor
@@ -101,7 +99,7 @@ export default function AboutPage() {
               </div>
 
               {/* Founder Quote Card */}
-              <div className="p-6 rounded-xl bg-[#F3F2ED] border-l-4 border-l-[#0891B2] space-y-2">
+              <div className="p-6 rounded-xl bg-[#F3F2ED] border-l-4 space-y-2" style={{ borderLeftColor: '#0891B2', boxShadow: '0 2px 12px rgba(8, 145, 178, 0.06)' }}>
                 <div className="text-xs font-mono uppercase tracking-wider text-[#0891B2] font-semibold">
                   FOUNDER&apos;S MISSION
                 </div>
@@ -126,7 +124,7 @@ export default function AboutPage() {
                   ].map((item) => (
                     <span
                       key={item}
-                      className="text-xs font-mono px-3 py-1 rounded-full bg-white border border-[#E2E3DC] text-[#202722]"
+                      className="text-xs font-mono px-3 py-1.5 rounded-[2px] bg-white border border-[#E2E3DC] text-[#202722] hover:border-[var(--color-brand-strong)] hover:shadow-2xs transition-all duration-300 cursor-default"
                     >
                       {item}
                     </span>
@@ -138,16 +136,16 @@ export default function AboutPage() {
 
           {/* 3 Core Operational Values */}
           <div className="space-y-8 pt-8 border-t border-[#E2E3DC]">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <span className="mono-tag">OPERATIONAL PILLARS</span>
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <EditorialEyebrow step="02" label="OPERATIONAL PILLARS" variant="plate" />
               <h2 className="text-3xl font-bold text-[#202722]">
                 How we think and build
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="tactile-card rounded-2xl p-8 bg-white space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#EDFBFD] border border-[#D5F6F9] flex items-center justify-center text-[#0891B2]">
+              <div className="tactile-card rounded-2xl p-5 sm:p-8 bg-white space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-[rgba(56,216,228,0.06)] border border-[rgba(56,216,228,0.15)] flex items-center justify-center text-[#0891B2]">
                   <Compass className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#202722]">
@@ -160,8 +158,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="tactile-card rounded-2xl p-8 bg-white space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#EDFBFD] border border-[#D5F6F9] flex items-center justify-center text-[#0891B2]">
+              <div className="tactile-card rounded-2xl p-5 sm:p-8 bg-white space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-[rgba(56,216,228,0.06)] border border-[rgba(56,216,228,0.15)] flex items-center justify-center text-[#0891B2]">
                   <Cpu className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#202722]">
@@ -174,8 +172,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="tactile-card rounded-2xl p-8 bg-white space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#EDFBFD] border border-[#D5F6F9] flex items-center justify-center text-[#0891B2]">
+              <div className="tactile-card rounded-2xl p-5 sm:p-8 bg-white space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-[rgba(56,216,228,0.06)] border border-[rgba(56,216,228,0.15)] flex items-center justify-center text-[#0891B2]">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#202722]">
@@ -191,6 +189,13 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
+
+      <SectionBridge
+        step="02"
+        tag="NEXT STEPS · PARTNERSHIP"
+        title="Ready to build your next system?"
+        subtitle="Talk directly with our engineering team to map constraints and define immediate project scope."
+      />
 
       <FinalCTA />
     </>

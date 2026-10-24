@@ -8,6 +8,9 @@ import { ShutterImage } from "@/components/motion/ShutterImage";
 import { KineticText } from "@/components/motion/KineticText";
 import { projects } from "@/content/projects";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { WorkBlueprintStage } from "@/components/sections/WorkBlueprintStage";
+import { KineticFillText } from "@/components/motion/KineticFillText";
+import { ScrambleText } from "@/components/motion/ScrambleText";
 import { useGSAP } from "@gsap/react";
 import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
 
@@ -37,13 +40,13 @@ export function SelectedWork() {
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <span className="font-mono text-xs font-semibold tracking-widest text-[var(--color-brand-strong)] uppercase">
-                SELECTED WORK · 01 / 03
+                <ScrambleText triggerOnHover>SELECTED WORK · 01 / 03</ScrambleText>
               </span>
               <h2
                 id="selected-work-title"
                 className="mt-3 font-heading text-3xl font-bold tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl"
               >
-                <KineticText triggerOnScroll>Built to solve real problems.</KineticText>
+                <KineticFillText as="span">Built to solve real problems.</KineticFillText>
               </h2>
             </div>
             <p className="max-w-md text-base leading-relaxed text-[var(--color-text-secondary)]">
@@ -81,16 +84,38 @@ export function SelectedWork() {
             </p>
           </div>
 
-          {/* Shutter Mask Image Visual */}
-          <Link href={`/work/${solarNation.slug}`} className="block">
-            <ShutterImage
-              src={solarNation.image}
-              alt={solarNation.title}
-              aspectRatio="aspect-16/9"
-              variant="aperture"
-              className="border border-[var(--color-border)] shadow-sm transition-transform duration-700 group-hover:scale-[1.01]"
-            />
-          </Link>
+          {/* Shutter Mask Image Visual & Interactive Blueprint Workbench */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-5">
+              <Link href={`/work/${solarNation.slug}`} className="block">
+                <ShutterImage
+                  src={solarNation.image}
+                  alt={solarNation.title}
+                  aspectRatio="aspect-16/10"
+                  variant="aperture"
+                  className="border border-[var(--color-border)] shadow-sm transition-transform duration-700 group-hover:scale-[1.01]"
+                />
+              </Link>
+              <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                {solarNation.solution}
+              </p>
+            </div>
+
+            <div className="lg:col-span-7">
+              <WorkBlueprintStage
+                projectTitle={solarNation.title}
+                projectSlug={solarNation.slug}
+                category={solarNation.category}
+                techStack={solarNation.techStack}
+                metrics={solarNation.metrics || [
+                  { label: "Audit Time", value: "< 2 min" },
+                  { label: "Conversion Lift", value: "+38%" },
+                  { label: "Lead Qualification", value: "100% Automated" }
+                ]}
+                accentColor={solarNation.accentColor}
+              />
+            </div>
+          </div>
 
           {/* Technical Architecture Specs & Link */}
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-12 md:items-center">

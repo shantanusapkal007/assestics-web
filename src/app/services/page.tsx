@@ -6,7 +6,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { services } from "@/content/services";
 import { LinkArrow } from "@/components/ui/LinkArrow";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Bot, Layers, Cloud, Database, Factory } from "lucide-react";
+import { SectionBridge } from "@/components/sections/SectionBridge";
+import { Layers, Cloud, Database, Factory } from "lucide-react";
+import { AgentNexusIcon } from "@/components/ui/ArchitecturalIcons";
 
 export const metadata: Metadata = {
   title: "Services & Systems Engineering Capabilities",
@@ -15,16 +17,16 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  const icons = [Bot, Layers, Cloud, Database, Factory];
+  const icons = [AgentNexusIcon, Layers, Cloud, Database, Factory];
 
   return (
     <>
-      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] border-b border-[#E2E3DC]">
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-[#FCFBF8] ambient-mesh relative">
         <Container>
           <SectionHeading
-            tag="OUR CAPABILITIES"
-            title="Technology that works together."
-            description="From autonomous AI automation to reliable infrastructure and smart supply chain systems, explore our full spectrum of engineering disciplines."
+            tag="WHAT WE OFFER"
+            title="Software and automations that work."
+            description="From AI assistants to custom web apps and connected systems, explore how we help your business move faster."
             className="mb-16"
           />
 
@@ -34,7 +36,7 @@ export default function ServicesPage() {
               return (
                 <div
                   key={service.id}
-                  className="tactile-card rounded-2xl p-8 sm:p-12 bg-white flex flex-col lg:flex-row gap-8 lg:gap-12 items-start hover:border-[#38D8E4] transition-all"
+                  className="tactile-card rounded-2xl p-5 sm:p-8 lg:p-12 bg-white flex flex-col lg:flex-row gap-6 lg:gap-12 items-start hover:border-[#38D8E4] transition-all"
                 >
                   {/* Left Column */}
                   <div className="lg:w-1/2 space-y-6">
@@ -43,7 +45,7 @@ export default function ServicesPage() {
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <span className="mono-tag text-[10px]">
+                        <span className="inline-block font-mono text-[10px] font-black tracking-wider text-white bg-[#161B17] px-2 py-0.5 rounded-[2px] mb-1">
                           PILLAR {service.number}
                         </span>
                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202722]">
@@ -75,7 +77,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Right Column: Capabilities & Deliverables */}
-                  <div className="lg:w-1/2 w-full space-y-6 bg-[#FCFBF8] rounded-xl p-6 sm:p-8 border border-[#E2E3DC]">
+                  <div className="lg:w-1/2 w-full space-y-6 bg-[#FCFBF8] rounded-xl p-4 sm:p-6 lg:p-8 border border-[#E2E3DC]">
                     <div>
                       <div className="text-xs font-mono uppercase tracking-wider text-[#202722] font-bold mb-3">
                         Core Capabilities
@@ -83,7 +85,7 @@ export default function ServicesPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#687069]">
                         {service.capabilities.map((cap) => (
                           <div key={cap} className="flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#38D8E4]" />
+                            <span className="font-mono text-[var(--color-brand-strong)] font-bold shrink-0">+</span>
                             <span>{cap}</span>
                           </div>
                         ))}
@@ -110,6 +112,13 @@ export default function ServicesPage() {
           </div>
         </Container>
       </section>
+
+      <SectionBridge
+        step="02"
+        tag="WORK WITH US"
+        title="Ready to build something better?"
+        subtitle="Talk directly with our builders to design software that fits your exact workflow."
+      />
 
       <FinalCTA />
     </>

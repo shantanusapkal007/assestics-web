@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
           description="Last updated: October 2026. How Assestics handles and protects information."
         />
 
-        <div className="tactile-card rounded-2xl p-8 sm:p-12 bg-white space-y-8 text-sm sm:text-base text-[#687069] leading-relaxed">
+        <div className="tactile-card rounded-2xl p-5 sm:p-8 lg:p-12 bg-white space-y-8 text-sm sm:text-base text-[#687069] leading-relaxed">
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-[#202722]">
               1. Information We Collect

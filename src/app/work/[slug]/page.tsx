@@ -55,11 +55,13 @@ export default async function ProjectDetailPage({
 
           {/* Header Metadata */}
           <div className="space-y-6 max-w-4xl mb-12">
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-              <span className="mono-tag">{project.category}</span>
-              <span className="text-[#C8CAC1]">•</span>
+            <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono">
+              <span className="font-mono text-[9.5px] font-black text-white bg-[#161B17] px-2 py-0.5 rounded-[2px] tracking-wider">
+                {project.category}
+              </span>
+              <span className="text-[var(--color-brand-strong)] font-bold">//</span>
               <span className="text-[#687069]">YEAR {project.year}</span>
-              <span className="text-[#C8CAC1]">•</span>
+              <span className="text-[var(--color-brand-strong)] font-bold">//</span>
               <span className="text-[#687069]">{project.client}</span>
             </div>
 

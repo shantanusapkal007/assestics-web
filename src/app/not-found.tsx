@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft } from "lucide-react";
 
+import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
+
 export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center py-20 bg-[#FCFBF8]">
       <Container size="narrow" className="text-center space-y-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EDFBFD] border border-[#D5F6F9]">
-          <span className="mono-tag">ERROR 404 // NOT FOUND</span>
+        <div className="flex justify-center">
+          <EditorialEyebrow step="404" label="ROUTE NOT LOCATED" variant="plate" />
         </div>
 
         <h1 className="text-6xl sm:text-7xl font-bold tracking-tight text-[#202722]">

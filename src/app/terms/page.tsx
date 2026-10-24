@@ -19,7 +19,7 @@ export default function TermsPage() {
           description="Last updated: October 2026. Commercial and professional standards governing work delivered by Assestics."
         />
 
-        <div className="tactile-card rounded-2xl p-8 sm:p-12 bg-white space-y-8 text-sm sm:text-base text-[#687069] leading-relaxed">
+        <div className="tactile-card rounded-2xl p-5 sm:p-8 lg:p-12 bg-white space-y-8 text-sm sm:text-base text-[#687069] leading-relaxed">
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-[#202722]">
               1. Professional Scope &amp; Deliverables
