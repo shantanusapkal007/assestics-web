@@ -128,6 +128,9 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Header />
           <main className="flex-1">{children}</main>
+          <div className="brand-stamp pointer-events-none fixed bottom-5 right-6 z-40 hidden lg:flex mix-blend-multiply" aria-hidden="true">
+            Assestics / Tech company
+          </div>
           <Footer />
           <CommandPalette />
         </SmoothScrollProvider>

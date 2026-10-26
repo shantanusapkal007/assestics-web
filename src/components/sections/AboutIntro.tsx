@@ -106,10 +106,10 @@ export function AboutIntro() {
                 Atul Suryawanshi — Co-Founder
               </h3>
               <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
-                M.Sc. Digital Factory & Operational Excellence (HDBW Munich) · B.E. Mechanical Engineering (SPPU Pune)
+                M.Sc. Digital Factory & Operational Excellence · B.E. Mechanical Engineering
               </p>
               <p className="mt-3 text-xs leading-relaxed text-[var(--color-text-tertiary)]">
-                Combining rigorous German manufacturing systems methodology with high-velocity full-stack software
+                Combining rigorous manufacturing systems methodology with high-velocity full-stack software
                 engineering.
               </p>
             </div>

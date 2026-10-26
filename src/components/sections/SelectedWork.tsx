@@ -219,7 +219,7 @@ export function SelectedWork() {
               </span>
             </div>
             <span className="font-mono text-xs text-[var(--color-brand-strong)] font-semibold">
-              MUNICH DIGITAL FACTORY METHODOLOGY
+              DIGITAL FACTORY METHODOLOGY
             </span>
           </div>
 

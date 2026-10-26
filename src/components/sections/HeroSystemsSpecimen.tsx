@@ -32,7 +32,7 @@ export function HeroSystemsSpecimen() {
       />
 
       {/* Luxury Chassis with Tactile Milled Emboss & Zero Clutter */}
-      <div className="tactile-emboss relative rounded-2xl border border-[var(--color-border-strong)] bg-white shadow-[0_24px_50px_-15px_rgba(22,27,23,0.08)] overflow-hidden">
+      <div className="product-demo relative rounded-2xl overflow-hidden">
         
         {/* Top Studio Browser Bar (Refined & Minimalist) */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 border-b border-[var(--color-border)] px-3 sm:px-6 py-2.5 sm:py-3 bg-[#FAF9F6]">
@@ -49,7 +49,7 @@ export function HeroSystemsSpecimen() {
                 ASSESTICS PLATFORM
               </span>
               <span className="font-mono text-[9px] text-[#8E968F] hidden sm:inline">
-                // v2.4 LIVE
+                // PRODUCT CONCEPT
               </span>
             </div>
           </div>
@@ -124,7 +124,7 @@ export function HeroSystemsSpecimen() {
                     </p>
                   </div>
                   <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 shrink-0">
-                    AVG REPLY: 1.8s
+                    EXAMPLE WORKFLOW
                   </span>
                 </div>
 
@@ -164,14 +164,14 @@ export function HeroSystemsSpecimen() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-mono text-[10px] font-bold text-emerald-900 truncate">
-                          Automated Reply Sent & Scheduled
+                          Automated response prepared
                         </span>
                         <span className="font-mono text-[9px] font-bold text-emerald-700 bg-white px-1.5 py-0.2 rounded border border-emerald-200 shrink-0">
-                          100% ACCURATE
+                          REVIEW RULES
                         </span>
                       </div>
                       <p className="text-xs text-[#374151] mt-0.5 leading-snug">
-                        Checked project capacity, sent pricing spec sheet, and created meeting link in calendar.
+                        Checks approved information, drafts the reply, and sends it or escalates it based on the rules you set.
                       </p>
                     </div>
                   </div>
@@ -180,13 +180,13 @@ export function HeroSystemsSpecimen() {
                 {/* Telemetry Metric Bar */}
                 <div className="pt-2.5 sm:pt-3 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 font-mono text-[9.5px] sm:text-[10.5px]">
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[#161B17]">
-                    <span>STATUS: <strong className="text-emerald-700">24/7 ACTIVE</strong></span>
+                    <span>ROLE: <strong className="text-emerald-700">HANDLE ROUTINE REQUESTS</strong></span>
                     <span className="text-[var(--color-border)] hidden sm:inline">|</span>
                     <span>HUMAN ATTENTION: <strong className="text-[#161B17]">ONLY ON EXCEPTIONS</strong></span>
                   </div>
                   <span className="text-emerald-800 font-bold flex items-center gap-1">
                     <Zap className="h-3 w-3 text-emerald-600" />
-                    <span>0 Unanswered Messages</span>
+                    <span>Escalate exceptions</span>
                   </span>
                 </div>
               </motion.div>
@@ -216,7 +216,7 @@ export function HeroSystemsSpecimen() {
                     </p>
                   </div>
                   <span className="font-mono text-[10px] font-bold text-[#161B17] bg-[#F3F4F6] px-2.5 py-1 rounded-md border border-[var(--color-border)] shrink-0">
-                    LATENCY: &lt;80ms
+                    BUILT FOR YOUR TEAM
                   </span>
                 </div>
 
@@ -226,7 +226,7 @@ export function HeroSystemsSpecimen() {
                     <span className="text-[#687069] font-bold">CLIENT DASHBOARD // LIVE METRICS</span>
                     <span className="text-emerald-700 font-bold flex items-center gap-1">
                       <TrendingUp className="h-3 w-3" />
-                      +42% OPERATIONAL SPEED
+                      ONE CLEAR VIEW
                     </span>
                   </div>
 
@@ -235,7 +235,7 @@ export function HeroSystemsSpecimen() {
                     <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF9F6] border border-[#E2E4DC]">
                       <div className="text-[8px] sm:text-[10px] font-mono text-[#8E968F] uppercase truncate">Orders</div>
                       <div className="font-mono text-xs sm:text-base font-bold text-[#161B17] mt-0.5">1,480</div>
-                      <div className="text-[7.5px] sm:text-[9px] font-mono text-emerald-700 font-semibold mt-0.5 truncate">✓ Auto-invoiced</div>
+                      <div className="text-[7.5px] sm:text-[9px] font-mono text-emerald-700 font-semibold mt-0.5 truncate">✓ Trackable status</div>
                     </div>
                     <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF9F6] border border-[#E2E4DC]">
                       <div className="text-[8px] sm:text-[10px] font-mono text-[#8E968F] uppercase truncate">Users</div>
@@ -244,8 +244,8 @@ export function HeroSystemsSpecimen() {
                     </div>
                     <div className="p-2 sm:p-2.5 rounded-lg bg-[#FAF9F6] border border-[#E2E4DC]">
                       <div className="text-[8px] sm:text-[10px] font-mono text-[#8E968F] uppercase truncate">Uptime</div>
-                      <div className="font-mono text-xs sm:text-base font-bold text-emerald-700 mt-0.5">99.99%</div>
-                      <div className="text-[7.5px] sm:text-[9px] font-mono text-emerald-700 font-semibold mt-0.5 truncate">Zero Downtime</div>
+                      <div className="font-mono text-xs sm:text-base font-bold text-emerald-700 mt-0.5">Built</div>
+                      <div className="text-[7.5px] sm:text-[9px] font-mono text-emerald-700 font-semibold mt-0.5 truncate">Designed to scale</div>
                     </div>
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export function HeroSystemsSpecimen() {
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[#161B17]">
                     <span>STACK: <strong className="text-[#161B17]">NEXT.JS · TYPESCRIPT · CLOUD</strong></span>
                     <span className="text-[var(--color-border)] hidden sm:inline">|</span>
-                    <span>OWNERSHIP: <strong className="text-emerald-700">100% YOUR CODE</strong></span>
+                    <span>OWNERSHIP: <strong className="text-emerald-700">HANDOVER INCLUDED</strong></span>
                   </div>
                   <span className="text-[#161B17] font-bold">No Per-Seat Licensing Fees</span>
                 </div>
@@ -333,9 +333,9 @@ export function HeroSystemsSpecimen() {
                 {/* Telemetry Metric Bar */}
                 <div className="pt-2.5 sm:pt-3 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 font-mono text-[9.5px] sm:text-[10.5px]">
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[#161B17]">
-                    <span>REDUNDANCY: <strong className="text-emerald-700">0 DUPLICATE ENTRIES</strong></span>
+                    <span>GOAL: <strong className="text-emerald-700">LESS DOUBLE ENTRY</strong></span>
                     <span className="text-[var(--color-border)] hidden sm:inline">|</span>
-                    <span>TIME SAVED: <strong className="text-[#161B17]">4+ HOURS DAILY</strong></span>
+                    <span>RESULT: <strong className="text-[#161B17]">A CLEARER WORKFLOW</strong></span>
                   </div>
                   <span className="text-emerald-800 font-bold flex items-center gap-1">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />

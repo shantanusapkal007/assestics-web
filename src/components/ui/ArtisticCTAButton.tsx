@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
+import { isTouchDevice, MOTION_EASINGS } from "@/lib/motion/tokens";
 
 interface ArtisticCTAButtonProps {
   href: string;
@@ -24,7 +25,7 @@ export function ArtisticCTAButton({
   const fillHoverRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isTouchDevice()) return;
     const { gsap } = registerGSAP();
     const btn = btnRef.current;
     const text = textRef.current;

@@ -47,7 +47,7 @@ export function CurvedHeroMarquee() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden py-4 -my-6 select-none pointer-events-none"
+      className="relative w-full overflow-hidden pt-4 pb-6 sm:pb-8 select-none pointer-events-none"
       aria-hidden="true"
     >
       <svg

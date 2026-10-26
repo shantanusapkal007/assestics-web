@@ -65,7 +65,7 @@ const CHALLENGES: Challenge[] = [
     category: "DIGITAL FACTORY & SUPPLY CHAIN",
     solutionTitle: "Shopfloor Execution & Supply Chain Twins",
     solutionDescription:
-      "Drawing from Munich Digital Factory methodology, we deploy ruggedized shopfloor tablet interfaces and simulation models that track inventory, throughput, and lead times in real time.",
+      "Drawing from advanced Digital Factory methodology, we deploy ruggedized shopfloor tablet interfaces and simulation models that track inventory, throughput, and lead times in real time.",
     architecturalResult: "Transforms paper clipboards into predictive inventory tracking and transit models.",
     targetServiceUrl: "/services/supply-chain",
     targetServiceLabel: "Explore Supply Chain Solutions",

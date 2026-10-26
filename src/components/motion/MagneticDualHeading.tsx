@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
+import { isTouchDevice, MOTION_EASINGS } from "@/lib/motion/tokens";
 
 interface MagneticDualHeadingProps {
   primaryText: string;
@@ -21,7 +22,7 @@ export function MagneticDualHeading({
   const primaryRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isTouchDevice()) return;
     const { gsap } = registerGSAP();
     const wrapper = wrapperRef.current;
     const accent = accentRef.current;

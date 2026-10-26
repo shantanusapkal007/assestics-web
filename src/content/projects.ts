@@ -111,7 +111,7 @@ export const projects: Project[] = [
     challenge:
       "A cross-border logistics provider faced cascading delays and unexpected detention fees caused by port congestion, unpredictable customs clearance, and fragmented supplier communication.",
     solution:
-      "Applying research from Munich's Digital Factory methodology, Assestics engineered a decision-support platform that maps transit legs, models alternate shipping lanes, and alerts dispatchers days ahead of anticipated regional bottlenecks.",
+      "Applying research from advanced Digital Factory methodology, Assestics engineered a decision-support platform that maps transit legs, models alternate shipping lanes, and alerts dispatchers days ahead of anticipated regional bottlenecks.",
     architectureDetails: [
       "Time-series database modeling vessel schedules, port wait times, and weather vectors",
       "Monte Carlo simulation engine stress-testing route risk and calculating delay probabilities",

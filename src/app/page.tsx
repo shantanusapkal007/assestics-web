@@ -4,6 +4,7 @@ import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { Process } from "@/components/sections/Process";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { SectionBridge } from "@/components/sections/SectionBridge";
+import { OperationalClarity } from "@/components/sections/OperationalClarity";
 
 export default function HomePage() {
   return (
@@ -11,13 +12,15 @@ export default function HomePage() {
       {/* 01. Hero & Strategic Positioning */}
       <Hero />
 
+      <OperationalClarity />
+
       {/* Narrative Transition: Hero -> What We Offer */}
       <SectionBridge
         step="01"
         tag="WHAT WE OFFER"
-        title="Custom Software & Smart Automation"
-        subtitle="Practical digital tools built around how your team actually works."
-        italicPrefix="Simple tools for"
+        title="Software That Fits Your Work"
+        subtitle="Custom applications, AI automation, and connected operations — built around your actual process."
+        italicPrefix="A better way to run"
         abstractPreview="capabilities"
       />
 
@@ -28,9 +31,9 @@ export default function HomePage() {
       <SectionBridge
         step="02"
         tag="HOW WE WORK"
-        title="From Concept to Launch in Weeks"
-        subtitle="No guesswork, no endless meetings. Just weekly progress and working software."
-        italicPrefix="A clear, honest path"
+        title="From Need to Working Product"
+        subtitle="We learn the workflow, build in weekly sprints, and keep you involved at every decision."
+        italicPrefix="A clear path from"
         abstractPreview="methodology"
         variant="accent"
       />
@@ -42,9 +45,9 @@ export default function HomePage() {
       <SectionBridge
         step="03"
         tag="WORK WITH US"
-        title="Ready to Upgrade Your Systems?"
-        subtitle="Tell us where your team loses time. We will show you how we can fix it."
-        italicPrefix="Let's build something"
+        title="A Partner Through Launch"
+        subtitle="Direct access to the people building your system, from the first workflow through launch and beyond."
+        italicPrefix="Built with you, not"
         abstractPreview="collaboration"
         variant="accent"
       />

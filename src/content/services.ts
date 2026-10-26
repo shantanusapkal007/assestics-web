@@ -198,7 +198,7 @@ export const services: ServicePillar[] = [
     shortDescription:
       "Transform complex supply chains into predictive, resilient competitive advantages. Led by specialized industrial engineering and digital factory expertise.",
     fullDescription:
-      "Supply chain optimization is Assestics' signature differentiator. Founded with advanced academic and industrial roots in Digital Factory & Operational Excellence from HDBW Munich, we help manufacturers, logistics providers, and distributors digitize physical operations. From digital twins to AI-driven predictive replenishment and IoT telemetry, we turn logistics chaos into synchronized clarity.",
+      "Supply chain optimization is Assestics' signature differentiator. Founded with advanced academic and industrial roots in Digital Factory & Operational Excellence, we help manufacturers, logistics providers, and distributors digitize physical operations. From digital twins to AI-driven predictive replenishment and IoT telemetry, we turn logistics chaos into synchronized clarity.",
     problemStatement:
       "Global volatility, opaque supplier tiers, and reactive logistics leave supply chains vulnerable to disruptions, excess carrying costs, and customer churn.",
     capabilities: [
@@ -225,7 +225,7 @@ export const services: ServicePillar[] = [
       {
         question: "What makes Assestics different from general web development agencies in supply chain?",
         answer:
-          "Our leadership holds specialized Master's degrees in Digital Factory and Operational Excellence from Munich, Germany, with published research in Blockchain-AI-IoT industrial logistics. We understand supply chains from the physical warehouse floor up.",
+          "Our leadership holds specialized Master's degrees in Digital Factory and Operational Excellence, with published research in Blockchain-AI-IoT industrial logistics. We understand supply chains from the physical warehouse floor up.",
       },
       {
         question: "Do we need to replace all our existing warehouse hardware?",

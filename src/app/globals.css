@@ -73,6 +73,55 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
+/* Warm drafting paper, controlled light and Assestics contour marks. */
+.material-section { isolation: isolate; background-color: var(--color-canvas); background-image: radial-gradient(ellipse 70% 55% at 82% 8%, rgba(91, 200, 195, .075), transparent 68%), radial-gradient(ellipse 60% 48% at 10% 88%, rgba(86, 103, 84, .055), transparent 72%), repeating-linear-gradient(0deg, rgba(55, 70, 59, .018) 0 1px, transparent 1px 6px); }
+.material-section--quiet { background-color: #f7f5ef; background-image: radial-gradient(ellipse 65% 52% at 14% 10%, rgba(255, 255, 255, .95), transparent 65%), radial-gradient(ellipse 58% 45% at 96% 80%, rgba(56, 216, 228, .055), transparent 72%), repeating-linear-gradient(0deg, rgba(55, 70, 59, .016) 0 1px, transparent 1px 7px); }
+.material-section--dark { isolation: isolate; background-color: #18241f; background-image: radial-gradient(ellipse 72% 70% at 88% 18%, rgba(56, 216, 228, .13), transparent 64%), radial-gradient(ellipse 64% 56% at 12% 100%, rgba(98, 126, 102, .2), transparent 68%), repeating-linear-gradient(0deg, rgba(255, 255, 255, .016) 0 1px, transparent 1px 7px); }
+.material-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.material-field::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(55, 70, 59, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(55, 70, 59, .035) 1px, transparent 1px); background-size: clamp(64px, 9vw, 144px) clamp(64px, 9vw, 144px); mask-image: linear-gradient(90deg, transparent, #000 20%, #000 85%, transparent); opacity: .5; }
+.material-field__contours { position: absolute; width: min(1200px, 94vw); height: 100%; right: -8%; top: 0; overflow: visible; }
+.material-field__path { fill: none; stroke: rgba(34, 100, 96, .16); stroke-width: 1.15; vector-effect: non-scaling-stroke; }
+.material-field__path--lead { stroke: rgba(8, 145, 178, .32); stroke-width: 1.35; }
+.material-field__cross { position: absolute; width: 15px; height: 15px; opacity: .55; background: linear-gradient(var(--color-brand-strong), var(--color-brand-strong)) center/1px 100% no-repeat, linear-gradient(90deg, var(--color-brand-strong), var(--color-brand-strong)) center/100% 1px no-repeat; }
+.material-field__cross--a { top: 15%; left: clamp(16px, 6vw, 120px); }.material-field__cross--b { bottom: 16%; right: clamp(20px, 8vw, 150px); transform: scale(.72); }
+.material-field--services .material-field__contours { right: -20%; width: min(1050px, 88vw); }.material-field--process .material-field__contours { right: auto; left: -8%; width: min(1320px, 100vw); }
+.material-field--dark .material-field__path { stroke: rgba(188, 239, 232, .19); }.material-field--dark .material-field__path--lead { stroke: rgba(56, 216, 228, .5); }.material-field--dark::before { background-image: linear-gradient(rgba(219, 244, 233, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(219, 244, 233, .055) 1px, transparent 1px); }
+@media (max-width: 640px) { .material-field__contours { width: 150vw; right: -55%; opacity: .62; }.material-field::before { opacity: .25; }.material-field__cross--b { display: none; } }
+
+/* Assestics is a nameplate, not a tiny utility logo. */
+.brand-lockup { display: inline-flex; align-items: center; gap: .7rem; line-height: 1; }
+.brand-lockup__mark { position: relative; display: block; flex: 0 0 auto; width: 2.7rem; height: 2.7rem; }
+.brand-lockup__copy { display: grid; gap: .22rem; }
+.brand-lockup__name { font-family: var(--font-display); font-size: 1.56rem; font-weight: 800; letter-spacing: -.055em; color: var(--color-text-primary); }
+.brand-lockup__descriptor { font-family: var(--font-sans); font-size: .6rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: var(--color-brand-strong); }
+.brand-lockup--hero .brand-lockup__mark { width: 3.1rem; height: 3.1rem; }.brand-lockup--hero .brand-lockup__name { font-size: 1.85rem; }.brand-lockup--hero .brand-lockup__descriptor { font-size: .65rem; }
+.brand-lockup--footer .brand-lockup__mark { width: 3.75rem; height: 3.75rem; }.brand-lockup--footer .brand-lockup__name { font-size: clamp(2rem, 4vw, 3.5rem); }.brand-lockup--footer .brand-lockup__descriptor { font-size: .68rem; }
+.brand-lockup--dark .brand-lockup__name { color: #f7f5ef; }.brand-lockup--dark .brand-lockup__descriptor { color: #79e2e9; }
+.brand-stamp { display: inline-flex; align-items: center; gap: .65rem; color: var(--color-brand-strong); font-family: var(--font-sans); font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }.brand-stamp::before { content: ""; width: 2.7rem; height: 1px; background: currentColor; opacity: .55; }
+@media (max-width: 640px) { .brand-lockup__mark { width: 2.35rem; height: 2.35rem; }.brand-lockup__name { font-size: 1.35rem; }.brand-lockup__descriptor { font-size: .53rem; } }
+
+/* Plain-language evidence, composed as a material shift rather than a feature-card row. */
+.operational-clarity { isolation: isolate; background: #edf0ea; }
+.operational-outcomes { display: grid; gap: .75rem; align-content: center; }
+.operational-outcomes__item { position: relative; display: grid; grid-template-columns: minmax(9rem, .8fr) minmax(11rem, 1fr); column-gap: clamp(1rem, 3vw, 3rem); row-gap: .5rem; padding: clamp(1.4rem, 2.5vw, 2.25rem); background: rgba(255, 255, 255, .68); }
+.operational-outcomes__item::before { content: ""; position: absolute; left: 0; top: 18%; bottom: 18%; width: 3px; background: var(--color-brand-primary); }
+.operational-outcomes__item:nth-child(2) { margin-left: clamp(0px, 4vw, 3.5rem); background: #f8f8f4; }.operational-outcomes__item:nth-child(3) { margin-left: clamp(0px, 1.5vw, 1.2rem); background: #e7eeea; }
+.operational-outcomes__from { grid-column: 1; font-size: .74rem; font-weight: 800; letter-spacing: .12em; line-height: 1.2; text-transform: uppercase; color: var(--color-text-secondary); }.operational-outcomes__from::before { content: "From"; display: block; margin-bottom: .45rem; color: var(--color-brand-strong); }
+.operational-outcomes__to { grid-column: 2; font-family: var(--font-display); font-size: clamp(1.35rem, 2.3vw, 2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; color: var(--color-text-primary); }.operational-outcomes__to::before { content: "To"; display: block; margin-bottom: .5rem; font-family: var(--font-sans); font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--color-brand-strong); }
+.operational-outcomes__detail { grid-column: 2; max-width: 34rem; font-size: .94rem; line-height: 1.55; color: var(--color-text-secondary); }
+@media (max-width: 640px) { .operational-outcomes__item { grid-template-columns: 1fr; }.operational-outcomes__from, .operational-outcomes__to, .operational-outcomes__detail { grid-column: 1; }.operational-outcomes__item:nth-child(2), .operational-outcomes__item:nth-child(3) { margin-left: 0; }.operational-outcomes__detail { margin-top: .25rem; } }
+
+/* Product concepts share a calm, credible Assestics chassis. */
+.product-demo { position: relative; overflow: hidden; background-color: #fbfaf7; border: 1px solid rgba(195, 201, 192, .9); box-shadow: 0 18px 48px -30px rgba(25, 42, 33, .24), inset 0 1px rgba(255, 255, 255, .9); }
+.product-demo::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(90deg, rgba(8, 145, 178, .045) 1px, transparent 1px), linear-gradient(rgba(8, 145, 178, .035) 1px, transparent 1px); background-size: 84px 84px; mask-image: linear-gradient(135deg, #000, transparent 58%); opacity: .35; }
+.product-demo > * { position: relative; z-index: 1; }
+.product-demo :is(.rounded-xl, .rounded-lg) { border-radius: .65rem; }
+.product-demo :is(.shadow-xs, .shadow-2xs, .shadow-sm) { box-shadow: none; }
+.product-demo :is(.font-mono) { letter-spacing: .025em; }
+.product-demo button { transition-duration: 220ms; }
+.product-demo button:hover { transform: translateY(-1px); }
+
+
 /* ================================================================
    Premium Scrollbar
    ================================================================ */
@@ -424,16 +473,16 @@ html[data-grid="on"]::after {
 }
 
 /* ================================================================
-   Nesil Noble Inspiration: Architectural CAD Selection Reticle & Strike
+   Architectural CAD Selection Reticle & Precision Dimensioning
    ================================================================ */
 .architectural-sel {
   position: absolute;
-  inset: -6px -10px;
-  border: 1px dashed rgba(22, 163, 74, 0.45);
+  inset: -10px -14px;
+  border: 1px dashed rgba(8, 145, 178, 0.35);
   border-radius: 4px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease, border-color 0.3s ease;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .architectural-sel.active {
@@ -442,29 +491,34 @@ html[data-grid="on"]::after {
 
 .architectural-sel .anchor {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #ffffff;
-  border: 1.5px solid #161b17;
+  width: 7px;
+  height: 7px;
+  background: #FCFBF8;
+  border: 1.5px solid #0891B2;
   border-radius: 1px;
+  box-shadow: 0 0 6px rgba(56, 216, 228, 0.35);
 }
 
-.architectural-sel .anchor-tl { top: -3.5px; left: -3.5px; }
-.architectural-sel .anchor-tr { top: -3.5px; right: -3.5px; }
-.architectural-sel .anchor-bl { bottom: -3.5px; left: -3.5px; }
-.architectural-sel .anchor-br { bottom: -3.5px; right: -3.5px; }
+.architectural-sel .anchor-tl { top: -4px; left: -4px; }
+.architectural-sel .anchor-tr { top: -4px; right: -4px; }
+.architectural-sel .anchor-bl { bottom: -4px; left: -4px; }
+.architectural-sel .anchor-br { bottom: -4px; right: -4px; }
 
 .architectural-dim {
   position: absolute;
-  bottom: -22px;
+  top: -22px;
   right: 0;
   font-family: var(--font-mono, monospace);
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--color-brand-strong);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: rgba(237, 251, 253, 0.7);
+  border: 1px solid rgba(56, 216, 228, 0.3);
 }
 
 .architectural-dim.active {

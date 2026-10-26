@@ -192,7 +192,7 @@ assestics/
 
 In strict adherence to brand integrity:
 1. **Zero Fabricated Metrics**: No unverified uptime percentages, fake latency counters, or synthetic customer logos.
-2. **Authentic Leadership Bio**: Co-Founder **Atul Suryawanshi**'s profile features verified credentials (M.Sc. Digital Factory & Operational Excellence, HDBW Munich; B.E. Mechanical Engineering, SPPU Pune).
+2. **Authentic Leadership Bio**: Co-Founder **Atul Suryawanshi**'s profile features verified credentials (M.Sc. Digital Factory & Operational Excellence; B.E. Mechanical Engineering, SPPU Pune).
 3. **Verified Contacts**:
    - **Email**: `assestics.office@gmail.com`
    - **Phone**: `+91-9359101176`

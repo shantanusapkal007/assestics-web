@@ -102,7 +102,7 @@ export function HeroSystemsConsole() {
           <div className="flex items-center gap-2 font-mono text-[10.5px] text-[var(--color-text-secondary)]">
             <span className="flex items-center gap-1.5 rounded-[2px] border border-[var(--color-border-strong)]/80 bg-white px-2 py-0.5 shadow-2xs">
               <span className="font-bold text-[var(--color-brand-strong)]">LOC //</span>
-              <span className="font-semibold text-[var(--color-text-primary)]">MUNICH DC-01</span>
+              <span className="font-semibold text-[var(--color-text-primary)]">PRIMARY DC-01</span>
             </span>
             <span className="hidden sm:inline-block font-mono text-[9.5px] font-bold text-white bg-emerald-700 px-1.5 py-0.5 rounded-[2px]">
               SLA 99.9%
@@ -461,7 +461,7 @@ export function HeroSystemsConsole() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {[
-                    { region: "EU-CENTRAL", city: "Munich DC-01", ping: "8ms", status: "Primary Master" },
+                    { region: "EU-CENTRAL", city: "Central DC-01", ping: "8ms", status: "Primary Master" },
                     { region: "EU-WEST", city: "Frankfurt DC-02", ping: "12ms", status: "Hot Standby" },
                     { region: "US-EAST", city: "Virginia Edge", ping: "68ms", status: "Active Replicate" },
                     { region: "AP-SOUTH", city: "Singapore Edge", ping: "118ms", status: "Edge Cache" },

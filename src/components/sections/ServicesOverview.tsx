@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { KineticText } from "@/components/motion/KineticText";
 import { ServiceVisualStage } from "@/components/sections/ServiceVisualStage";
 import { ArrowUpRight } from "lucide-react";
@@ -9,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
+import { MaterialField } from "@/components/ui/MaterialField";
 
 interface ServiceItem {
   id: string;
@@ -141,10 +143,11 @@ export function ServicesOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden pt-8 pb-16 lg:pt-10 lg:pb-20 bg-[var(--color-canvas)] ambient-mesh"
+      className="material-section material-section--quiet relative overflow-hidden pt-8 pb-16 lg:pt-10 lg:pb-20"
       aria-labelledby="services-overview-title"
     >
       {/* 1320–1440px Responsive Centered Container with Balanced Outer Margins */}
+      <MaterialField variant="services" />
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Full-width Section Introduction */}
         <div ref={headerRef} className="mb-12 border-b border-[var(--color-border)] pb-8 lg:mb-16">
@@ -156,10 +159,10 @@ export function ServicesOverview() {
               id="services-overview-title"
               className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-[var(--color-text-primary)] sm:text-4xl lg:text-5xl"
             >
-              <KineticText triggerOnScroll>Simple, reliable software for your business.</KineticText>
+              <KineticText triggerOnScroll>What we build to make work flow.</KineticText>
             </h2>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-[var(--color-text-secondary)]">
-              We build tools that eliminate{" "}
+              From your first customer enquiry to the work happening behind the scenes, we build tools that remove{" "}
               <span className="relative inline-block font-semibold text-[var(--color-text-primary)]">
                 busywork
                 <svg
@@ -178,7 +181,7 @@ export function ServicesOverview() {
                   />
                 </svg>
               </span>
-              , connect messy spreadsheets, and keep your business running smoothly.
+              , connect the systems you already use, and give your team a clear way to move work forward.
             </p>
           </div>
         </div>
@@ -255,13 +258,14 @@ export function ServicesOverview() {
                     isSelected ? "bg-gradient-to-r from-[rgba(56,216,228,0.06)] to-transparent" : "hover:bg-[var(--color-surface)]/30"
                   )}
                 >
-                  <span
-                    className={cn(
-                      "absolute left-0 top-4 bottom-4 w-[2px] rounded-[1px] transition-all duration-400",
-                      isSelected ? "opacity-100" : "opacity-0"
-                    )}
-                    style={isSelected ? { background: 'linear-gradient(to bottom, #38D8E4, #0891B2)' } : undefined}
-                  />
+                  {isSelected && (
+                    <motion.span
+                      layoutId="activeServiceTabIndicator"
+                      className="absolute left-0 top-3 bottom-3 w-[2.5px] rounded-[1px] shadow-[0_0_8px_rgba(56,216,228,0.6)]"
+                      style={{ background: 'linear-gradient(to bottom, #38D8E4, #0891B2)' }}
+                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                    />
+                  )}
 
                   {/* Header Row: Index Number, Title, and Action Link */}
                   <div className="flex items-start justify-between gap-4 pl-4 sm:pl-5">
@@ -313,16 +317,32 @@ export function ServicesOverview() {
 
                   {/* Signature Visual Connection to Left Column Visual Stage on Desktop */}
                   {isSelected && (
-                    <div
+                    <motion.div
+                      layoutId="activeServiceSignalLine"
                       className="hidden lg:block absolute -left-6 xl:-left-8 top-1/2 -translate-y-1/2 w-6 xl:w-8 h-px pointer-events-none"
                       style={{ background: 'linear-gradient(to left, #0891B2, #38D8E4)' }}
-                    />
+                      transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                    >
+                      <span className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-[#38D8E4] shadow-[0_0_8px_#38D8E4] animate-ping opacity-60" />
+                      <span className="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 rounded-full bg-[#0891B2]" />
+                    </motion.div>
                   )}
                 </div>
               );
             })}
           </div>
 
+        </div>
+      </div>
+
+      {/* Narrative Egress Conduit leading into SectionBridge 02 */}
+      <div className="pointer-events-none w-full flex justify-center mt-12 -mb-8 sm:mt-16 sm:-mb-12" aria-hidden="true">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-1.5 font-mono text-[9px] text-[var(--color-brand-strong)] uppercase tracking-widest opacity-60">
+            <span className="h-1 w-1 rounded-full bg-[#38D8E4] animate-pulse" />
+            <span>EGRESS_PORT // ROUTE_02_METHODOLOGY</span>
+          </div>
+          <div className="w-[1.5px] h-8 sm:h-12 bg-gradient-to-b from-[#38D8E4] to-transparent" />
         </div>
       </div>
     </section>

@@ -3,20 +3,32 @@ import Link from "next/link";
 import { siteConfig } from "@/content/site";
 import { services } from "@/content/services";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
+import { MaterialField } from "@/components/ui/MaterialField";
+import { BrandLockup } from "@/components/ui/BrandLockup";
 
 export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer className="relative bg-[#F3F2ED] border-t border-[#E2E3DC]/40 pt-16 md:pt-24 pb-12 text-[#202722] overflow-hidden">
+    <footer className="material-section--quiet relative border-t border-[#E2E3DC]/40 pt-16 md:pt-24 pb-12 text-[#202722] overflow-hidden">
+      <MaterialField variant="footer" />
       {/* Top Seamless Optical Horizon */}
       <div
         className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(226,227,220,0.6) 20%, rgba(56,216,228,0.4) 50%, rgba(226,227,220,0.6) 80%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(226,227,220,0.6) 20%, rgba(56,216,228,0.5) 50%, rgba(226,227,220,0.6) 80%, transparent 100%)",
         }}
       />
+
+      {/* Center Registration Marker linking from Final CTA */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center z-10" aria-hidden="true">
+        <div className="w-[1.5px] h-6 bg-gradient-to-b from-[#38D8E4] to-transparent" />
+        <span className="font-mono text-[8.5px] font-bold text-[var(--color-brand-strong)] uppercase tracking-widest opacity-70">
+          TECH_FOOTPRINT // GLOBAL_OPERATIONS
+        </span>
+      </div>
+
       {/* Subtle ambient gradient */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -30,16 +42,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-6">
-            <Link href="/" className="flex items-center gap-3 w-fit select-none group">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/logo.png"
-                alt="Assestics Logo"
-                className="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-              />
-              <span className="text-2xl font-bold tracking-tight text-[#202722]">
-                Assestics
-              </span>
+            <Link href="/" className="w-fit select-none group" aria-label="Assestics home">
+              <BrandLockup size="footer" className="transition-transform duration-500 group-hover:translate-x-1" />
             </Link>
             <p className="text-sm text-[#687069] leading-relaxed max-w-sm">
               We connect the systems that help businesses operate, automate and
@@ -160,7 +164,63 @@ export function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
+      {/* Full-Bleed Colossal Typographic Brand Architecture (Edge-to-Edge) */}
+      <div className="relative w-full overflow-hidden select-none pointer-events-none my-6 sm:my-10 px-2 sm:px-6" aria-hidden="true">
+        <div className="w-full max-w-[1920px] mx-auto">
+          {/* Subtle Technical Hairline Coordinates Frame */}
+          <div className="hidden sm:flex items-center justify-between px-6 lg:px-10 mb-2 font-mono text-[8.5px] tracking-widest text-[#202722]/30 uppercase">
+            <span>[01 // SYSTEM_IDENTITY]</span>
+            <span className="tracking-[0.25em]">ASSESTICS &middot; TECH COMPANY</span>
+            <span>[GLOBAL_OPERATIONS &middot; 2026]</span>
+          </div>
+
+          <svg
+            viewBox="0 0 1100 148"
+            className="w-full h-auto overflow-visible select-none"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="footerBrandGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#161B17" stopOpacity="0.08" />
+                <stop offset="60%" stopColor="#161B17" stopOpacity="0.05" />
+                <stop offset="100%" stopColor="#0891B2" stopOpacity="0.03" />
+              </linearGradient>
+              <linearGradient id="footerStrokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#202722" stopOpacity="0.02" />
+                <stop offset="50%" stopColor="#0891B2" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="#202722" stopOpacity="0.02" />
+              </linearGradient>
+            </defs>
+
+            {/* Architectural Grid Blueprint Guides */}
+            <line x1="20" y1="4" x2="1080" y2="4" stroke="rgba(226, 227, 220, 0.6)" strokeWidth="0.75" strokeDasharray="3 5" />
+
+            <text
+              x="50%"
+              y="56%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className="font-heading font-black select-none"
+              style={{
+                fill: "url(#footerBrandGradient)",
+                stroke: "url(#footerStrokeGradient)",
+                strokeWidth: "0.5px",
+                letterSpacing: "-0.045em",
+                fontSize: "154px",
+              }}
+            >
+              ASSESTICS
+            </text>
+
+            <line x1="20" y1="144" x2="1080" y2="144" stroke="rgba(226, 227, 220, 0.6)" strokeWidth="0.75" strokeDasharray="3 5" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#E2E3DC] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#687069] text-center sm:text-left">
           <p>© {currentYear} Assestics. All rights reserved.</p>
@@ -179,7 +239,7 @@ export function Footer() {
             </Link>
             <span className="text-[#A0A8A1] flex items-center gap-1.5 font-mono text-xs">
               <span className="text-[var(--color-brand-strong)] font-mono text-[10px]">+</span>
-              Munich · Global Delivery
+              Global Delivery
             </span>
           </div>
         </div>

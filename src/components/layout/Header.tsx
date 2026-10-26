@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
 import { ArrowRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BrandLockup } from "@/components/ui/BrandLockup";
 
 const NAV_LINKS = [
   { href: "/work", label: "Work" },
@@ -83,19 +83,7 @@ export function Header() {
               className="group flex items-center gap-3 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] rounded-sm"
               aria-label="Assestics Home"
             >
-              <div className="relative h-8 w-8 sm:h-9 sm:w-9 shrink-0">
-                <Image
-                  src="/images/logo.png"
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 32px, 36px"
-                  priority
-                  className="object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
-                />
-              </div>
-              <span className="font-heading text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--color-text-primary)]">
-                Assestics
-              </span>
+              <BrandLockup className="transition-transform duration-500 group-hover:translate-x-0.5" />
             </Link>
 
             {/* Desktop Navigation Links with Active System Indicator */}

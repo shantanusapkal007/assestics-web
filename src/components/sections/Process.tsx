@@ -10,6 +10,7 @@ import { registerGSAP, prefersReducedMotion } from "@/lib/motion/gsap";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 import { EditorialEyebrow } from "@/components/ui/EditorialEyebrow";
+import { MaterialField } from "@/components/ui/MaterialField";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -82,12 +83,12 @@ export function Process() {
     <section
       ref={containerRef}
       id="process"
-      className="relative overflow-hidden bg-[var(--color-canvas)] transition-colors duration-1000 py-16 sm:py-24 lg:py-32"
+      className="material-section relative overflow-hidden transition-colors duration-1000 py-16 sm:py-24 lg:py-32"
       aria-labelledby="process-title"
     >
+      <MaterialField variant="process" />
       {/* =========================================================================
-          1. Architectural Top Catenary Dome Boundary (DOVV Studio inspiration)
-          Framing the journey section with organic curved architectural tension
+          1. Architectural Top Catenary Dome Boundary & Conduit Ingress
           ========================================================================= */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 w-full overflow-hidden leading-none z-10">
         <svg
@@ -102,6 +103,16 @@ export function Process() {
             fill="currentColor"
           />
         </svg>
+      </div>
+
+      {/* Top Narrative Ingress Conduit from SectionBridge 02 */}
+      <div className="pointer-events-none w-full flex justify-center -mt-6 mb-8 relative z-20" aria-hidden="true">
+        <div className="flex flex-col items-center">
+          <div className="w-[1.5px] h-8 bg-gradient-to-b from-[#6366F1] to-[#38D8E4]" />
+          <div className="flex items-center gap-2 mt-1 font-mono text-[9px] text-[#6366F1] uppercase tracking-widest opacity-70">
+            <span>METHODOLOGY_INGRESS // STAGE_02</span>
+          </div>
+        </div>
       </div>
 
       {/* =========================================================================
@@ -487,7 +498,7 @@ export function Process() {
       </Container>
 
       {/* =========================================================================
-          7. Architectural Bottom Catenary Dome Boundary (DOVV Studio inspiration)
+          7. Architectural Bottom Catenary Dome Boundary & Conduit Egress
           ========================================================================= */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 rotate-180">
         <svg
@@ -502,6 +513,17 @@ export function Process() {
             fill="currentColor"
           />
         </svg>
+      </div>
+
+      {/* Bottom Narrative Egress Conduit leading into SectionBridge 03 */}
+      <div className="pointer-events-none w-full flex justify-center mt-12 -mb-8 relative z-20" aria-hidden="true">
+        <div className="flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-1.5 font-mono text-[9px] text-emerald-600 uppercase tracking-widest opacity-70">
+            <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
+            <span>EGRESS_TO_ENGAGEMENT // ROUTE_03</span>
+          </div>
+          <div className="w-[1.5px] h-8 bg-gradient-to-b from-emerald-500 to-transparent" />
+        </div>
       </div>
     </section>
   );

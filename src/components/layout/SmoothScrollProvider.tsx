@@ -27,7 +27,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.8,
+      touchMultiplier: 1.5,
+      autoRaf: false,
     });
 
     lenisRef.current = lenis;
@@ -44,10 +45,30 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Notify ScrollTrigger of refresh
-    ScrollTrigger.refresh();
+    // Smooth anchor navigation handling (e.g. #process)
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest("a");
+      if (!target) return;
+      const href = target.getAttribute("href");
+      if (href && href.startsWith("#") && href.length > 1) {
+        const el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          lenis.scrollTo(el as HTMLElement, { offset: -90, duration: 1.2 });
+        }
+      }
+    };
+
+    document.addEventListener("click", handleAnchorClick, { passive: false });
+
+    // Refresh ScrollTrigger after initial mount
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
 
     return () => {
+      clearTimeout(timeout);
+      document.removeEventListener("click", handleAnchorClick);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       lenisRef.current = null;

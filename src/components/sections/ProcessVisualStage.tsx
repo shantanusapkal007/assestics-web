@@ -59,7 +59,7 @@ function ForensicDiscoveryVisual() {
   const activeConstraint = constraints[selectedConstraint];
 
   return (
-    <div className="w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-elevated select-none">
+    <div className="product-demo w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl select-none">
       {/* Top Console Telemetry Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-2">
@@ -187,7 +187,7 @@ function ForensicDiscoveryVisual() {
       {/* Bottom Live Coordinate Bar */}
       <div className="pt-3 border-t border-[var(--color-border)] flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-[var(--color-text-tertiary)]">
         <span>DELIVERABLE: CLEAR ACTION PLAN</span>
-        <span className="text-[var(--color-brand-strong)] font-bold">100% TRANSPARENT // NO HIDDEN FEES</span>
+        <span className="text-[var(--color-brand-strong)] font-bold">CLEAR SCOPE // SHARED DECISIONS</span>
       </div>
     </div>
   );
@@ -201,7 +201,7 @@ function BuildSprintVisual() {
   const reduced = prefersReducedMotion();
 
   return (
-    <div className="w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-elevated select-none">
+    <div className="product-demo w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl select-none">
       {/* Top Precision Coordinates Bar */}
       <div className="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-2">
@@ -214,7 +214,7 @@ function BuildSprintVisual() {
         </div>
         <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-[var(--color-text-tertiary)]">
           <Cpu className="h-3 w-3 text-[#6366F1]" />
-          <span>WEEKLY DEMOS · 100% TESTED</span>
+          <span>WEEKLY DEMOS · TESTING BUILT IN</span>
         </div>
       </div>
 
@@ -285,7 +285,7 @@ function BuildSprintVisual() {
               <div>&#125;);</div>
               <div className="pt-2 text-emerald-400 font-bold flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5" />
-                <span>ALL TESTS PASS // ZERO ERRORS</span>
+                <span>CHECKS RUN BEFORE REVIEW</span>
               </div>
             </div>
           </div>
@@ -342,7 +342,7 @@ function ProductionResilienceVisual() {
   const reduced = prefersReducedMotion();
 
   return (
-    <div className="w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-elevated select-none">
+    <div className="product-demo w-full flex flex-col justify-between p-5 sm:p-6 rounded-2xl select-none">
       {/* Top Production Cluster Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-2">
@@ -355,7 +355,7 @@ function ProductionResilienceVisual() {
         </div>
         <div className="flex items-center gap-2 font-mono text-[10px] px-2.5 py-1 rounded-[2px] bg-[#161B17] text-white border border-[#161B17]">
           <ShieldCheck className="h-3 w-3 text-emerald-400" />
-          <span>24/7 SUPPORT ACTIVE</span>
+          <span>LAUNCH &amp; CARE PLAN</span>
         </div>
       </div>
 
@@ -369,7 +369,7 @@ function ProductionResilienceVisual() {
           </span>
           <div className="my-2">
             <span className="font-mono text-2xl sm:text-3xl font-black text-[var(--color-text-primary)] tracking-tight">
-              99.9%
+              Stable
             </span>
           </div>
           <div className="flex items-center gap-1.5 font-mono text-[9.5px] text-emerald-600 font-bold">
@@ -385,7 +385,7 @@ function ProductionResilienceVisual() {
           </span>
           <div className="my-2">
             <span className="font-mono text-2xl sm:text-3xl font-black text-[var(--color-brand-strong)] tracking-tight">
-              &lt;24h
+              Direct
             </span>
           </div>
           <div className="flex items-center gap-1.5 font-mono text-[9.5px] text-[var(--color-brand-contrast)] font-bold">
@@ -401,7 +401,7 @@ function ProductionResilienceVisual() {
           </span>
           <div className="my-2">
             <span className="font-mono text-2xl sm:text-3xl font-black text-emerald-600 tracking-tight">
-              100%
+              Your
             </span>
           </div>
           <div className="flex items-center gap-1.5 font-mono text-[9.5px] text-emerald-600 font-bold">
@@ -416,7 +416,7 @@ function ProductionResilienceVisual() {
       <div className="p-4 rounded-xl bg-[#161B17] border border-[#2D3748] text-[#E2E3DC] mb-5">
         <div className="flex items-center justify-between mb-2">
           <span className="font-mono text-[10px] text-emerald-400 font-bold tracking-widest">
-            SYSTEM HEALTH // 99.9% UPTIME
+            SYSTEM HEALTH // MONITORING PLAN
           </span>
           <span className="font-mono text-[9px] text-gray-400">
             ALL SERVICES RUNNING NORMALLY
@@ -481,8 +481,8 @@ function ProductionResilienceVisual() {
 
       {/* Bottom Live Coordinate Bar */}
       <div className="pt-3 border-t border-[var(--color-border)] flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-[var(--color-text-tertiary)]">
-        <span>STATUS: SYSTEM LIVE // FULL TEAM TRAINING COMPLETE</span>
-        <span className="text-emerald-600 font-bold">24/7 ONGOING SUPPORT & CARE</span>
+            <span>STATUS: LAUNCH CHECKLIST &amp; TEAM HANDOVER</span>
+        <span className="text-emerald-600 font-bold">ONBOARDING, MONITORING &amp; CARE</span>
       </div>
     </div>
   );

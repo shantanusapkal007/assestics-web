@@ -111,7 +111,7 @@ export function CommandPalette() {
       hint: "/about",
       icon: Compass,
       action: () => { router.push("/about"); setIsOpen(false); },
-      keywords: ["company", "team", "values", "studio"]
+      keywords: ["company", "team", "values", "tech", "technology"]
     },
     {
       id: "nav-contact",

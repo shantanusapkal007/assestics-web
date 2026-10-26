@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { 
@@ -45,28 +45,28 @@ const SERVICE_META: Record<
   "ai-automation": {
     discipline: "01 // WHAT WE OFFER: AI AUTOMATION",
     explanation:
-      "Customer inquiries, orders, and emails are answered automatically in seconds by checking your existing docs. Your staff only steps in when personal attention is truly needed.",
+      "Customer inquiries, orders, and emails can be routed, checked against approved information, and handled automatically. Your staff stays involved whenever judgement is needed.",
     href: "/services/ai-automation",
     linkText: "Explore AI & Automation",
   },
   "software-engineering": {
     discipline: "02 // WHAT WE OFFER: CUSTOM SOFTWARE",
     explanation:
-      "We replace slow, scattered spreadsheets with lightning-fast web applications and client portals crafted around the exact way your team works.",
+      "We replace slow, scattered spreadsheets with custom web applications and client portals shaped around the exact way your team works.",
     href: "/services/software-engineering",
     linkText: "Explore Software & Digital Products",
   },
   "cloud-devops": {
     discipline: "03 // WHAT WE OFFER: CLOUD & HOSTING",
     explanation:
-      "We set up secure, auto-scaling cloud servers with zero-downtime automated updates, so your tools stay fast and never crash under heavy traffic.",
+      "We set up secure cloud infrastructure and reliable release pipelines so your tools can stay stable as your business grows.",
     href: "/services/cloud-devops",
     linkText: "Explore Cloud & DevOps",
   },
   "business-systems": {
     discipline: "04 // WHAT WE OFFER: CONNECTED SYSTEMS",
     explanation:
-      "We link your online store, warehouse stock, accounting books, and shipping carriers into one live dashboard—eliminating all manual copy-pasting.",
+      "We connect your online store, warehouse, accounting, and shipping tools so the right information moves between them without repeated copy-pasting.",
     href: "/services/business-systems",
     linkText: "Explore Business Systems & Supply Chain",
   },
@@ -122,7 +122,7 @@ function AiWorkflowVisual() {
   };
 
   return (
-    <div className="luxury-border-glow w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-white via-[#FCFBF8] to-[#FAF9F5] border border-[var(--color-border)] shadow-xs select-none space-y-4 relative overflow-hidden">
+    <div className="product-demo w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl select-none space-y-4">
       
       {/* Top Test Controller */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pb-3 border-b border-[var(--color-border)]">
@@ -299,7 +299,7 @@ function AiWorkflowVisual() {
         </span>
         <span className="text-emerald-700 font-bold flex items-center gap-1">
           <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
-          <span>100% Policy Compliant</span>
+          <span>Rules-based review</span>
         </span>
       </div>
     </div>
@@ -315,7 +315,7 @@ function SoftwareProductVisual() {
   const [activeTab, setActiveTab] = useState<"ops" | "orders" | "access">("ops");
 
   return (
-    <div className="luxury-border-glow w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-white via-[#FCFBF8] to-[#FAF9F5] border border-[var(--color-border)] shadow-xs select-none space-y-4 relative overflow-hidden">
+    <div className="product-demo w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl select-none space-y-4">
       
       {/* Top Application Window Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pb-3 border-b border-[var(--color-border)]">
@@ -384,13 +384,13 @@ function SoftwareProductVisual() {
               </div>
               <div className="p-2 sm:p-3 rounded-lg bg-gradient-to-b from-[#FAF9F6] to-white border border-[#E2E4DC] hover:border-cyan-300 transition-all">
                 <span className="text-[8px] sm:text-[9.5px] text-[#8E968F] uppercase block font-bold truncate">Latency</span>
-                <span className="text-xs sm:text-lg font-black text-cyan-800 block mt-0.5 tracking-tight truncate">28ms</span>
-                <span className="text-[7.5px] sm:text-[9px] text-cyan-700 font-semibold block mt-0.5 truncate">Sub-second</span>
+                <span className="text-xs sm:text-lg font-black text-cyan-800 block mt-0.5 tracking-tight truncate">Live</span>
+                <span className="text-[7.5px] sm:text-[9px] text-cyan-700 font-semibold block mt-0.5 truncate">Current view</span>
               </div>
               <div className="p-2 sm:p-3 rounded-lg bg-gradient-to-b from-[#FAF9F6] to-white border border-[#E2E4DC] hover:border-cyan-300 transition-all">
                 <span className="text-[8px] sm:text-[9.5px] text-[#8E968F] uppercase block font-bold truncate">Errors</span>
-                <span className="text-xs sm:text-lg font-black text-emerald-800 block mt-0.5 tracking-tight truncate">0.00%</span>
-                <span className="text-[7.5px] sm:text-[9px] text-emerald-700 font-semibold block mt-0.5 truncate">Auto-valid</span>
+                <span className="text-xs sm:text-lg font-black text-emerald-800 block mt-0.5 tracking-tight truncate">Checked</span>
+                <span className="text-[7.5px] sm:text-[9px] text-emerald-700 font-semibold block mt-0.5 truncate">Rules applied</span>
               </div>
             </div>
 
@@ -457,7 +457,7 @@ function SoftwareProductVisual() {
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-[9.5px]">
               <span className="px-2 py-0.5 rounded bg-white border border-[#D5D7CE] text-[#161B17]">✓ Single Sign-On (SSO)</span>
-              <span className="px-2 py-0.5 rounded bg-white border border-[#D5D7CE] text-[#161B17]">✓ SOC2 Compliant Audits</span>
+              <span className="px-2 py-0.5 rounded bg-white border border-[#D5D7CE] text-[#161B17]">✓ Permission controls</span>
               <span className="px-2 py-0.5 rounded bg-white border border-[#D5D7CE] text-[#161B17]">✓ Automated Hourly Backups</span>
             </div>
           </div>
@@ -485,7 +485,7 @@ function CloudPipelineVisual() {
   const [trafficSurge, setTrafficSurge] = useState(false);
 
   return (
-    <div className="luxury-border-glow w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-white via-[#FCFBF8] to-[#FAF9F5] border border-[var(--color-border)] shadow-xs select-none space-y-4 relative overflow-hidden">
+    <div className="product-demo w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl select-none space-y-4">
       
       {/* Top Console Telemetry */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pb-3 border-b border-[var(--color-border)]">
@@ -548,7 +548,7 @@ function CloudPipelineVisual() {
             ZERO-DOWNTIME CANARY DEPLOYMENT PIPELINE
           </span>
           <span className="text-emerald-700 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 shadow-2xs">
-            0 DROPPED REQUESTS
+            RELEASE CHECKS ACTIVE
           </span>
         </div>
 
@@ -574,8 +574,8 @@ function CloudPipelineVisual() {
 
       {/* Footer System Telemetry */}
       <div className="pt-2.5 border-t border-[var(--color-border)] flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-[#687069]">
-        <span>SLA: <strong className="text-emerald-700">99.99% Guaranteed Uptime</strong></span>
-        <span>SECURITY: <strong className="text-[#161B17]">Automated SSL · DDoS Shield · Daily Backups</strong></span>
+        <span>RELIABILITY: <strong className="text-emerald-700">MONITORING &amp; RECOVERY PLAN</strong></span>
+        <span>SECURITY: <strong className="text-[#161B17]">ACCESS CONTROLS · BACKUPS · REVIEW</strong></span>
       </div>
     </div>
   );
@@ -597,7 +597,7 @@ function BusinessSystemsVisual() {
   };
 
   return (
-    <div className="luxury-border-glow w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl bg-gradient-to-b from-white via-[#FCFBF8] to-[#FAF9F5] border border-[var(--color-border)] shadow-xs select-none space-y-4 relative overflow-hidden">
+    <div className="product-demo w-full flex flex-col justify-between p-4 sm:p-6 rounded-2xl select-none space-y-4">
       
       {/* Top Console Telemetry */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pb-3 border-b border-[var(--color-border)]">
@@ -687,7 +687,7 @@ function BusinessSystemsVisual() {
         <span>ELIMINATES: <strong className="text-rose-700">Spreadsheet errors, lost emails & duplicate entry</strong></span>
         <span className="text-emerald-700 font-bold flex items-center gap-1">
           <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-          <span>100% Data Accuracy</span>
+          <span>Reconciliation checks</span>
         </span>
       </div>
     </div>
@@ -700,48 +700,20 @@ function BusinessSystemsVisual() {
    ========================================================================= */
 export function ServiceVisualStage({ activeId }: ServiceVisualStageProps) {
   const currentMeta = SERVICE_META[activeId] || SERVICE_META["ai-automation"];
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: -500, y: -500 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!stageRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
   return (
     <div 
-      ref={stageRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="relative flex flex-col justify-between w-full min-h-[500px] select-none"
     >
-      {/* Luxury Interactive Cursor Radial Spotlight */}
-      {isHovered && (
-        <div 
-          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 -m-3 sm:-m-4 rounded-3xl"
-          style={{
-            background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(56, 216, 228, 0.08), transparent 70%)`,
-          }}
-          aria-hidden="true"
-        />
-      )}
-
       {/* Visual Simulation Display with Fluid Spring Transitions */}
       <div className="relative z-10 flex-1 flex items-center justify-center w-full min-h-[380px]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           {activeId === "ai-automation" && (
             <motion.div
               key="ai-automation"
-              initial={{ opacity: 0, scale: 0.98, y: 12 }}
+              initial={{ opacity: 0, scale: 0.985, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -12 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.985, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="w-full"
             >
               <AiWorkflowVisual />
@@ -751,10 +723,10 @@ export function ServiceVisualStage({ activeId }: ServiceVisualStageProps) {
           {activeId === "software-engineering" && (
             <motion.div
               key="software-engineering"
-              initial={{ opacity: 0, scale: 0.98, y: 12 }}
+              initial={{ opacity: 0, scale: 0.985, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -12 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.985, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="w-full"
             >
               <SoftwareProductVisual />
@@ -764,10 +736,10 @@ export function ServiceVisualStage({ activeId }: ServiceVisualStageProps) {
           {activeId === "cloud-devops" && (
             <motion.div
               key="cloud-devops"
-              initial={{ opacity: 0, scale: 0.98, y: 12 }}
+              initial={{ opacity: 0, scale: 0.985, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -12 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.985, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="w-full"
             >
               <CloudPipelineVisual />
@@ -777,10 +749,10 @@ export function ServiceVisualStage({ activeId }: ServiceVisualStageProps) {
           {activeId === "business-systems" && (
             <motion.div
               key="business-systems"
-              initial={{ opacity: 0, scale: 0.98, y: 12 }}
+              initial={{ opacity: 0, scale: 0.985, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: -12 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, scale: 0.985, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="w-full"
             >
               <BusinessSystemsVisual />
